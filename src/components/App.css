@@ -1,0 +1,244 @@
+/* Reset CSS Styles */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* General Styling */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Searchbar Container */
+#searchbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+}
+
+.searchbar-form {
+
+}
+
+.searchbar-form input {
+  width: 20rem;
+}
+
+.dropdown-container {
+  position: absolute;
+  border: 1px solid black;
+  width: 20rem;
+  max-height: 10rem;
+  background-color: white;
+	line-height: normal;
+  overflow: auto;
+}
+
+.dropdown-item {
+	padding: 0.25rem;
+}
+
+/* Expirybar Styling */
+#expirybar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.expirybar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+  width: 90%;
+  border: 1px solid black;
+	max-width: 90vw;
+}
+
+.expiry {
+	padding: 0.25rem 0.5rem;
+}
+
+/* Expirybar Styling */
+#overview-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 5vh;
+}
+
+.overview {
+  display: grid;
+	grid-template-columns: repeat(3, 1fr);
+  width: 90vw;
+}
+
+.overview-dte {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.overview-ticker {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.overview-iv {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+/* All Chain Styling */
+/* Chain ContainerStyling */
+#chain-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: 75vh;
+}
+
+.chain {
+	position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+}
+
+.low-chain,
+.high-chain {
+	display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+}
+
+.low-chain #call-container,
+.low-chain #put-container,
+.high-chain #call-container,
+.high-chain #put-container {
+	border-bottom: 1px solid grey;
+}
+
+.low-chain :last-child > #call-container,
+.low-chain :last-child > #put-container,
+.high-chain :last-child > #call-container,
+.high-chain :last-child > #put-container {
+	border-bottom: none;
+}
+
+/* Option Strike Styling */
+#strike-container {
+  display: grid;
+  grid-template-columns: 10fr 2fr 10fr;
+  width: 90vw;
+	height: 1.5rem;
+}
+
+#strike {
+	display: grid;
+  place-items: center;
+}
+
+/* Put & Call Price Styling */
+#call-container,
+#put-container {
+	display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+}
+
+/* Band Styling */
+#band-outer-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 92.5vw;
+	height: 2rem;
+	border: 1px solid black;
+	border-radius: 0.3rem;
+	background-color: white;
+	z-index: 10;
+}
+
+#band-inner-container {
+  display: grid;
+  grid-template-columns: 10fr 2fr 10fr;
+  width: 90vw;
+}
+
+.band-call,
+.band-put {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+}
+
+.band-price {
+  display: grid;
+  place-items: center;
+}
+
+/* Strikes Border Styling */
+#strikes-border {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 6.5vw;
+	height: 105%;
+	border: 1px solid black;
+	border-radius: 0.5rem;
+}

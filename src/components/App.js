@@ -2,7 +2,7 @@ import './App.css';
 import { dates } from '../data/tickers'
 import Searchbar from './searchbar';
 import Expirybar from './expirybar';
-import Chain from './chain';
+import Chain from './chain/chain';
 import Overview from './overview';
 
 

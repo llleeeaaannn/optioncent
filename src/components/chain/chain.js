@@ -3,7 +3,7 @@ import Band from './band';
 import Strike from './strike';
 import LowChain from './low-chain';
 import HighChain from './high-chain';
-import { strikes, options } from '../data/optiondata';
+import { strikes, options } from '../../data/optiondata';
 
 const Chain = () => {
   return (

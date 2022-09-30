@@ -9,9 +9,11 @@ import Overview from './overview';
 function App() {
   return (
     <div>
-      <Searchbar />
-      <Expirybar expiryDates={dates}/>
-      <Overview />
+      <div id="header-container">
+        <Searchbar />
+        <Expirybar expiryDates={dates}/>
+        <Overview />
+      </div>
       <Chain />
     </div>
   );

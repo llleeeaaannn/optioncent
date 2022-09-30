@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Call = () => {
+const Call = ({option}) => {
   return (
     <div id="call-container">
-      <span className="spread">0.2</span>
-      <span className="bid">1.05</span>
-      <span className="mid">1.15</span>
-      <span className="ask">1.25</span>
+      <span className="bid">{option.bid}</span>
+      <span className="mid">{option.mid}</span>
+      <span className="ask">{option.ask}</span>
+      <span className="spread">{option.spread}</span>
+      <p>{console.log(option)}</p>
     </div>
   )
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Put = () => {
+const Put = ({option}) => {
   return (
     <div id="put-container">
-      <span className="bid">1.2</span>
-      <span className="mid">1.45</span>
-      <span className="ask">1.7</span>
-      <span className="spread">0.5</span>
+      <span className="bid">{option.bid}</span>
+      <span className="mid">{option.mid}</span>
+      <span className="ask">{option.ask}</span>
+      <span className="spread">{option.spread}</span>
     </div>
   )
 }

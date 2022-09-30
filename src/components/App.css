@@ -48,6 +48,12 @@ table {
   box-sizing: border-box;
 }
 
+/* Header Container Styling */
+#header-container {
+	position: sticky;
+	top: 0;
+}
+
 /* Searchbar Container */
 #searchbar-container {
   display: flex;
@@ -78,6 +84,7 @@ table {
 
 .dropdown-item {
 	padding: 0.25rem;
+	cursor: pointer;
 }
 
 /* Expirybar Styling */
@@ -238,7 +245,7 @@ table {
 	left: 50%;
 	transform: translateX(-50%);
 	width: 6.5vw;
-	height: 105%;
+	height: calc(100% + 1rem);
 	border: 1px solid black;
 	border-radius: 0.5rem;
 }

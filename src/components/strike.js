@@ -3,14 +3,18 @@ import Call from './call';
 import Put from './put';
 
 
-const Strike = () => {
+const Strike = ({ strikePrice, options }) => {
+
+  let call = options.find(option => option.contract_type === 'call');
+  let put = options.find(option => option.contract_type === 'put');
+
   return (
     <div id="strike-container">
-      <Call />
+      <Call option={call}/>
       <div id="strike">
-        <span>85</span>
+        <span>{strikePrice}</span>
       </div>
-      <Put />
+      <Put option={put}/>
     </div>
   )
 }

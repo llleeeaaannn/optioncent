@@ -6,6 +6,7 @@ import Dropdown from './searchbar-dropdown';
 const Searchbar = () => {
 
   const [value, setValue] = useState('');
+  const [clicked, setClicked] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
 
   const getSuggestions = () => {
@@ -16,8 +17,14 @@ const Searchbar = () => {
     return tickers.filter(ticker => ticker.toUpperCase().slice(0, inputLength) === input);
   }
 
+  const suggestionClicked = (suggestion) => {
+    setClicked(true);
+    setValue(suggestion);
+    setSuggestions([]);
+  }
+
   useEffect(() => {
-    setSuggestions(getSuggestions());
+    !clicked ? setSuggestions(getSuggestions()) : setClicked(false);
   }, [value]);
 
   return (
@@ -34,7 +41,7 @@ const Searchbar = () => {
           />
         </form>
         <div className="dropdown-container">
-          { suggestions.map((suggestion, i) => <Dropdown suggestion={suggestion} key={i}/>) }
+          { suggestions.map((suggestion, i) => <Dropdown suggestion={suggestion} key={i} suggestionClicked={suggestionClicked}/>) }
         </div>
       </div>
     </div>

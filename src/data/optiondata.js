@@ -1,4 +1,10 @@
-export {strikes, options }
+export {strikes, options, ticker, dte, iv }
+
+let ticker = 'AMD'
+
+let dte = '24'
+
+let iv = '125.2'
 
 let strikes = [
     25,
@@ -80,7 +86,7 @@ let options = [
         "strike_price": 25,
         "contract_type": "call",
         "bid": 1.3,
-        "mid": 1.4,
+        "mid": 20,
         "ask": 1.5,
         "spread": 0.2
     },

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { tickers } from '../data/tickers'
 import Dropdown from './searchbar-dropdown';
 
-const Searchbar = () => {
+const Searchbar = ({changeTicker}) => {
 
   const [value, setValue] = useState('');
   const [clicked, setClicked] = useState(false);
@@ -21,6 +21,7 @@ const Searchbar = () => {
     setClicked(true);
     setValue(suggestion);
     setSuggestions([]);
+    changeTicker(suggestion);
   }
 
   useEffect(() => {

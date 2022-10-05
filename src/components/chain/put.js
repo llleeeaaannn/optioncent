@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Put = ({option}) => {
+const Put = ({ option, getPercent }) => {
   return (
     <div id="put-container">
-      <span className="bid">{option.bid}</span>
-      <span className="mid">{option.mid}</span>
-      <span className="ask">{option.ask}</span>
-      <span className="spread">{option.spread}</span>
+      <span className="bid">{getPercent(option.bid, 17)}%</span>
+      <span className="mid">{getPercent(option.mid, 17)}%</span>
+      <span className="ask">{getPercent(option.ask, 17)}%</span>
+      <span className="spread">{getPercent(option.spread, 17)}%</span>
     </div>
   )
 }

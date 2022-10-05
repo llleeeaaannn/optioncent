@@ -4,8 +4,18 @@ import Strike from './strike';
 import LowChain from './low-chain';
 import HighChain from './high-chain';
 import { strikes, options } from '../../data/optiondata';
+import { useContext, useEffect } from 'react';
+import { TickerContext } from '../App'
 
 const Chain = () => {
+
+  const ticker = useContext(TickerContext);
+
+  useEffect(() => {
+    if (!ticker) return;
+    // Get all expirations for said ticker
+  }, [ticker]);
+
   return (
     <div id="chain-container">
       <div className="chain">

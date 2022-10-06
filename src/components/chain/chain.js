@@ -3,33 +3,84 @@ import Band from './band';
 import Strike from './strike';
 import LowChain from './low-chain';
 import HighChain from './high-chain';
-import { strikes, options } from '../../data/optiondata';
-import { useContext, useEffect } from 'react';
-import { TickerContext } from '../App'
+// import { strikes, options } from '../../data/optiondata';
+import { useState, useContext, useEffect } from 'react';
+import { TickerContext, ExpiryContext } from '../App'
 
-const Chain = () => {
+export const ChainContext = React.createContext();
+export const StrikeContext = React.createContext();
+
+const Chain = ({changeExpiry}) => {
 
   const ticker = useContext(TickerContext);
+  const expiry = useContext(ExpiryContext);
+
+  const [data, setData] = useState();
+  const [strikes, setStrikes] = useState();
 
   useEffect(() => {
-    if (!ticker) return;
+    // Everytime ticker changes:
     // Get all expirations for said ticker
+    // Set first expiration as expiry
+    if (!ticker) return;
+
+    changeExpiry('2022-10-07')
   }, [ticker]);
 
+  useEffect(() => {
+    // Everytime expiry changes:
+    // Get all options chain for said ticker and expiry
+    // Set data as options chain
+    if (!expiry) return;
+
+    async function fetchMyData() {
+      let response = await fetch(`https://api.polygon.io/v3/reference/options/contracts?underlying_ticker=${ticker}&expiration_date=${expiry}&limit=1000&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
+      if (!response.ok) {
+        const message = `An error has occured: ${response.status}`;
+        throw new Error(message);
+      } else {
+        response = await response.json();
+        setData(response.results);
+      }
+    }
+
+    fetchMyData()
+  }, [expiry]);
+
+  useEffect(() => {
+    // Everytime data changes:
+    // Update components with new data
+    if (!data) return;
+
+    console.log(data);
+
+    let strikeSet = new Set();
+    for (let option of data) {
+      strikeSet.add(option.strike_price);
+    }
+    const strikeArray = Array.from(strikeSet);
+    setStrikes(strikeArray);
+
+  }, [data]);
+
   return (
-    <div id="chain-container">
-      <div className="chain">
-        <div className="low-chain">
-          <LowChain strikes={strikes} options={options}/>
+    <ChainContext.Provider value={data}>
+      <StrikeContext.Provider value={strikes}>
+        <div id="chain-container">
+          <div className="chain">
+            <div className="low-chain">
+              <LowChain/>
+            </div>
+            <Band />
+            <div className="high-chain">
+              <HighChain/>
+            </div>
+            <div id="strikes-border">
+            </div>
+          </div>
         </div>
-        <Band />
-        <div className="high-chain">
-          <HighChain strikes={strikes} options={options}/>
-        </div>
-        <div id="strikes-border">
-        </div>
-      </div>
-    </div>
+      </StrikeContext.Provider>
+    </ChainContext.Provider>
   )
 }
 

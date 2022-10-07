@@ -8,19 +8,20 @@ const LowChain = () => {
   const options = useContext(ChainContext);
   const strikes = useContext(StrikeContext);
 
-  const [lowStrikes, setLowStrikes] = useState([]);
-
-  console.log(options, strikes);
+  const [lowStrikes, setLowStrikes] = useState();
 
   useEffect(() => {
     if (!strikes) return;
     setLowStrikes(strikes.filter(strike => strike <= 85));
   }, [strikes]);
 
-  // const lowStrikes = strikes.filter(strike => strike <= 85);
-
   return (
-    lowStrikes.map((strike, i) => <Strike strikePrice={strike} key={i} options={options.filter(option => option.strike_price === strike)}/>)
+    <div>
+      { lowStrikes &&
+        <Strike strikePrice={lowStrikes[0]} options={options.filter(option => option.strike_price === lowStrikes[0])}/>
+      }
+    </div>
+    // lowStrikes.map((strike, i) => <Strike strikePrice={strike} key={i} options={options.filter(option => option.strike_price === strike)}/>)
   )
 }
 

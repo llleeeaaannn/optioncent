@@ -33,7 +33,7 @@ const Chain = ({changeExpiry}) => {
     // Set data as options chain
     if (!expiry) return;
 
-    async function fetchMyData() {
+    async function fetchChain() {
       let response = await fetch(`https://api.polygon.io/v3/reference/options/contracts?underlying_ticker=${ticker}&expiration_date=${expiry}&limit=1000&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
       if (!response.ok) {
         const message = `An error has occured: ${response.status}`;
@@ -44,7 +44,7 @@ const Chain = ({changeExpiry}) => {
       }
     }
 
-    fetchMyData()
+    fetchChain()
   }, [expiry]);
 
   useEffect(() => {

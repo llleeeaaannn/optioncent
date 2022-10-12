@@ -5,16 +5,22 @@ import Searchbar from './searchbar';
 import Expirybar from './expirybar';
 import Chain from './chain/chain';
 import Overview from './overview';
+import Popup from './popup/popup';
 
 export const TickerContext = React.createContext();
 export const PriceContext = React.createContext();
 export const ExpiryContext = React.createContext();
+export const ContractContext = React.createContext();
+
 
 function App() {
 
   const [ticker, setTicker] = useState();
   const [price, setPrice] = useState();
   const [expiry, setExpiry] = useState();
+  const [showPopup, setShowPopup] = useState(false);
+  const [contractTicker, setContractTicker] = useState();
+
 
   const changeTicker = (newTicker) => {
     setTicker(newTicker);
@@ -22,6 +28,15 @@ function App() {
 
   const changeExpiry = (newExpiry) => {
     setExpiry(newExpiry);
+  }
+
+  const makePopup = (contractTicker) => {
+    setContractTicker(contractTicker);
+    setShowPopup(true);
+  }
+
+  const hidePopup = () => {
+    setShowPopup(false);
   }
 
   async function fetchPrice() {
@@ -32,13 +47,10 @@ function App() {
     } else {
       response = await response.json();
       const result = response.results[0];
+      console.log(result['c']);
       setPrice(result['c']);
     }
   }
-
-  useEffect(() => {
-    if (ticker) setExpiry('2022-10-07');
-  }, [ticker]);
 
   useEffect(() => {
     if (ticker) fetchPrice();
@@ -49,10 +61,13 @@ function App() {
       <TickerContext.Provider value={ticker}>
         <PriceContext.Provider value={price}>
           <ExpiryContext.Provider value={expiry}>
-            <Searchbar changeTicker={changeTicker}/>
-            <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
-            <Overview />
-            <Chain changeExpiry={changeExpiry}/>
+            <ContractContext.Provider value={contractTicker}>
+              <Searchbar changeTicker={changeTicker}/>
+              <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
+              <Overview />
+              <Chain changeExpiry={changeExpiry} makePopup={makePopup} />
+              { showPopup && <Popup hidePopup={hidePopup} /> }
+          </ContractContext.Provider>
           </ExpiryContext.Provider>
         </PriceContext.Provider>
       </TickerContext.Provider>

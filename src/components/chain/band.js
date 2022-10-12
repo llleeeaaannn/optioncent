@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { PriceContext } from '../App';
 
 const Band = () => {
@@ -17,7 +17,7 @@ const Band = () => {
         </div>
 
         <div className="band-price">
-          <span>{price}</span>
+          <span>${price}</span>
         </div>
 
         <div className="band-put">

@@ -2,26 +2,20 @@ import React from 'react';
 import Call from './call';
 import Put from './put';
 
-
-const Strike = ({ strikePrice, options }) => {
-
-  const call = options.find(option => option.contract_type === 'call');
-  const put = options.find(option => option.contract_type === 'put');
-
-  const getPercent = (optionPrice, sharePrice) => {
-    return (optionPrice / sharePrice * 100).toFixed(2);
-  }
+const Strike = ({ strikeObject, makePopup }) => {
+  const call = strikeObject['call'];
+  const put = strikeObject['put'];
+  const strikePrice = strikeObject['strike']
 
   return (
     <div id="strike-container">
-      <Call option={call} getPercent={getPercent}/>
+      <Call option={call} makePopup={makePopup}/>
       <div id="strike">
         <span>{strikePrice}</span>
       </div>
-      <Put option={put} getPercent={getPercent}/>
+      <Put option={put} makePopup={makePopup}/>
     </div>
   )
 }
-
 
 export default Strike;

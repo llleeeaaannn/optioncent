@@ -10,7 +10,7 @@ import { TickerContext, ExpiryContext } from '../App'
 export const ChainContext = React.createContext();
 export const StrikeContext = React.createContext();
 
-const Chain = ({changeExpiry}) => {
+const Chain = ({ changeExpiry, makePopup }) => {
 
   const ticker = useContext(TickerContext);
   const expiry = useContext(ExpiryContext);
@@ -23,8 +23,7 @@ const Chain = ({changeExpiry}) => {
     // Get all expirations for said ticker
     // Set first expiration as expiry
     if (!ticker) return;
-
-    changeExpiry('2022-10-07')
+    changeExpiry('2022-10-14')
   }, [ticker]);
 
   useEffect(() => {
@@ -45,14 +44,12 @@ const Chain = ({changeExpiry}) => {
     }
 
     fetchChain()
-  }, [expiry]);
+  }, [expiry, ticker]);
 
   useEffect(() => {
     // Everytime data changes:
     // Update components with new data
     if (!data) return;
-
-    console.log(data);
 
     let strikeSet = new Set();
     for (let option of data) {
@@ -69,11 +66,11 @@ const Chain = ({changeExpiry}) => {
         <div id="chain-container">
           <div className="chain">
             <div className="low-chain">
-              <LowChain/>
+              <LowChain makePopup={makePopup}/>
             </div>
             <Band />
             <div className="high-chain">
-              <HighChain/>
+              <HighChain makePopup={makePopup}/>
             </div>
             <div id="strikes-border">
             </div>

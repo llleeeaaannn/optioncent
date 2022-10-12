@@ -1,27 +1,49 @@
 import React from 'react';
 import Strike from './strike';
 import { useState, useEffect, useContext } from 'react';
+import { PriceContext } from '../App';
 import { ChainContext, StrikeContext } from './chain';
 
-const LowChain = () => {
+const LowChain = ({ makePopup }) => {
 
+  const price = useContext(PriceContext);
   const options = useContext(ChainContext);
   const strikes = useContext(StrikeContext);
 
   const [lowStrikes, setLowStrikes] = useState();
 
+
   useEffect(() => {
     if (!strikes) return;
-    setLowStrikes(strikes.filter(strike => strike <= 85));
+
+    function fetchOptionTickers() {
+      let strikeAndContracts = [];
+      const lowStrikesArray = strikes.filter(strike => strike <= price);
+
+      for (let strikePrice of lowStrikesArray) {
+        let contracts = options.filter(option => option.strike_price === strikePrice);
+        let callName = contracts.find(option => option.contract_type === 'call');
+        let putName = contracts.find(option => option.contract_type === 'put');
+        const strikeObject = {
+          strike: strikePrice,
+          call: callName['ticker'],
+          put: putName['ticker']
+        };
+        strikeAndContracts.push(strikeObject)
+      };
+      return strikeAndContracts;
+    }
+
+    setLowStrikes(fetchOptionTickers())
   }, [strikes]);
+
 
   return (
     <div>
       { lowStrikes &&
-        <Strike strikePrice={lowStrikes[0]} options={options.filter(option => option.strike_price === lowStrikes[0])}/>
+        lowStrikes.map((strike, i) => <Strike strikeObject={lowStrikes[i]} makePopup={makePopup} key={i} />)
       }
     </div>
-    // lowStrikes.map((strike, i) => <Strike strikePrice={strike} key={i} options={options.filter(option => option.strike_price === strike)}/>)
   )
 }
 

@@ -1,31 +1,39 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
 import { PriceContext } from '../App'
+import { ChainContext } from './chain'
+import { getPercent } from '../../methods/methods'
 
-const Call = ({ option, getPercent }) => {
+const Call = ({ option, makePopup }) => {
 
+  const options = useContext(ChainContext);
   const price = useContext(PriceContext);
 
   const [callContract, setCallContract] = useState();
 
-  async function fetchMyData() {
-    let response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${option['ticker']}/prev?adjusted=true&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
-    if (!response.ok) {
-      const message = `An error has occured: ${response.status}`;
-      throw new Error(message);
-    } else {
+  useEffect(() => {
+    async function fetchOption() {
+      let response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${option}/prev?adjusted=true&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
+      if (!response.ok) {
+        const message = `An error has occured: ${response.status}`;
+        throw new Error(message);
+      }
       response = await response.json();
-      console.log(response);
-      setCallContract(response.results[0]);
+      setCallContract(response.results[0])
     }
-  }
 
-  fetchMyData()
+    fetchOption();
+  }, [options]);
 
   return (
-    <div id="call-container">
+    <div id="call-container" onClick={() => makePopup(option)}>
       { !callContract &&
-        <span className="spread">oop</span>
+        <>
+          <span className="spread">-</span>
+          <span className="bid">-</span>
+          <span className="mid">-</span>
+          <span className="ask">-</span>
+        </>
       }
       { callContract &&
         <>

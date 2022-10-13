@@ -1,10 +1,10 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { dates } from '../data/tickers'
-import Searchbar from './searchbar';
-import Expirybar from './expirybar';
+import Searchbar from './searchbar/searchbar';
+import Expirybar from './expirybar/expirybar';
 import Chain from './chain/chain';
-import Overview from './overview';
+import Overview from './chain/overview';
 import Popup from './popup/popup';
 
 export const TickerContext = React.createContext();

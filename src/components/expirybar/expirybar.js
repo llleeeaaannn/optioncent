@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Expirybar = ({ changeExpiry, expiryDates }) => {
   return (
     <div id="expirybar-container">

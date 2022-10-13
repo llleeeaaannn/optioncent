@@ -1,4 +1,3 @@
-import React from 'react';
 import Strike from './strike';
 import { useState, useEffect, useContext } from 'react';
 import { PriceContext } from '../App';

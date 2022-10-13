@@ -1,7 +1,6 @@
-import React from 'react';
-import { dte, iv } from '../data/optiondata'
 import { useContext } from 'react';
-import { TickerContext, ExpiryContext } from './App'
+import { iv } from '../../data/optiondata'
+import { TickerContext, ExpiryContext } from '../App'
 
 const Overview = () => {
 

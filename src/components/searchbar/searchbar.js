@@ -1,6 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from "react";
-import { tickers } from '../data/tickers'
+import { useState, useEffect } from 'react';
+import { tickers } from '../../data/tickers'
 import Dropdown from './searchbar-dropdown';
 
 const Searchbar = ({changeTicker}) => {

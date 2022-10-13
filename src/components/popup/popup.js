@@ -1,7 +1,8 @@
 import { useState, useContext, useEffect } from 'react'
 import Detail from './detail';
-import { TickerContext, ContractContext, PriceContext } from '../App'
-import { getPercent } from '../../methods/methods'
+import { TickerContext, ContractContext, PriceContext } from '../App';
+import { getPercent, getStrike, getFormattedDate, getDTE } from '../../methods/methods';
+import { format } from 'date-fns';
 
 const Popup = ({ hidePopup }) => {
 
@@ -12,7 +13,6 @@ const Popup = ({ hidePopup }) => {
   const [contract, setContract] = useState();
 
   useEffect(() => {
-    console.log(contractTicker);
     if (!contractTicker) return;
 
     async function fetchChain() {
@@ -35,7 +35,7 @@ const Popup = ({ hidePopup }) => {
         <div id="popup-container" onClick={() => hidePopup()}>
           <div className="popup">
             <header>
-              <span>URNM 100C January 10th</span>
+              <span>{ticker} {getStrike(contract['details']['strike_price'], contract['details']['contract_type'])}</span>
             </header>
             <div className="popup-content">
               {console.log(contract)}
@@ -43,11 +43,10 @@ const Popup = ({ hidePopup }) => {
               <Detail name='Price (%):' value={`${getPercent(contract['day']['close'], price)}%`}/>
               <Detail name='Dollar Change:' value={`${contract['day']['change'].toFixed(2)}$`}/>
               <Detail name='Percent Change:' value={`${contract['day']['change_percent'].toFixed(2)}%`}/>
-              <Detail name='DTE' value='10'/>
-              <Detail name='DTE' value='10'/>
-              <Detail name='DTE' value='10'/>
-              <Detail name='DTE' value='10'/>
-              <Detail name='DTE' value='10'/>
+              <Detail name='Volume:' value={contract['day']['volume']}/>
+              <Detail name='Open Interest:' value={contract['open_interest']}/>
+              <Detail name='Expiry:' value={getFormattedDate(contract['details']['expiration_date'], 'P')}/>
+              <Detail name='DTE:' value={getDTE(contract['details']['expiration_date'])}/>
             </div>
           </div>
         </div>

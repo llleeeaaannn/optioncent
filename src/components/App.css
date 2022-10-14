@@ -42,15 +42,57 @@ table {
 	border-spacing: 0;
 }
 
-/* General Styling */
+/* Variable Styling */
+:root {
+	/* Colours */
+	--bg1: rgba(18, 18, 18, 1);
+	--bg2: rgba(30.75, 30.75, 30.75, 1);
+	--bg3: rgba(43.5, 43.5, 43.5, 1);
+	--bg4: rgba(56.25, 56.25, 56.25, 1);
+	--bg5: rgba(69, 69, 69, 1);
+	--primary1: rgba(245, 245, 245, 1);
+	--primary2: rgba(230, 230, 230, 1);
+	--primary3: rgba(210, 210, 210, 1);
+	--primary4: rgba(160, 160, 160, 1);
+	--primary5: rgba(130, 130, 130, 1);
+	--secondary1: rgba(145, 25, 141, 1);
+	--secondary2: rgba(162, 57, 160, 1);
+	--secondary3: rgba(192, 84, 190, 1);
+	--secondary4: rgba(194, 112, 192, 1);
+	--secondary5: rgba(214, 169, 213, 1);
+	--lightOverlay1: rgba(255, 255, 255, 0.05);
+	--lightOverlay2: rgba(255, 255, 255, 0.10);
+	--lightOverlay3: rgba(255, 255, 255, 0.15);
+	--darkOverlay1: rgba(0, 0, 0, 0.05);
+	--darkOverlay2: rgba(0, 0, 0, 0.10);
+	--darkOverlay3: rgba(0, 0, 0, 0.15);
 
+
+	/* Font Sizes */
+	--fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+	--fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+	--fs-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+	--fs-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+	--fs-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+	--fs-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+	--fs-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+}
+
+
+
+/* General Styling */
 * {
   box-sizing: border-box;
+	color: var(--primary5);
+}
+
+body {
+	background-color: var(--bg1);
+	min-width: 20rem;
 }
 
 /* Header Container Styling */
 #header-container {
-
 }
 
 /* Searchbar Container */
@@ -101,12 +143,15 @@ table {
 	justify-content: center;
 	flex-wrap: wrap;
   width: 90%;
-  border: 1px solid black;
 	max-width: 90vw;
+	border-radius: 0.5rem;
+	background-color: var(--bg2);
+
 }
 
 .expiry {
 	padding: 0.25rem 0.5rem;
+	cursor: pointer;
 }
 
 /* Expirybar Styling */
@@ -121,7 +166,7 @@ table {
 
 .overview {
   display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(5, 1fr);
   width: 90vw;
 }
 
@@ -131,7 +176,9 @@ table {
 	justify-content: flex-start;
 }
 
-.overview-ticker {
+.overview-ticker,
+.overview-calls,
+.overview-puts {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -141,6 +188,10 @@ table {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
+}
+
+.overview span {
+	color: var(--primary1);
 }
 
 /* All Chain Styling */
@@ -176,7 +227,7 @@ table {
 .low-chain #put-container,
 .high-chain #call-container,
 .high-chain #put-container {
-	border-bottom: 1px solid grey;
+	border-bottom: 0.5px solid var(--primary5);
 }
 
 .low-chain :last-child > #call-container,
@@ -199,12 +250,21 @@ table {
   place-items: center;
 }
 
+#strike span {
+	color: var(--primary5);
+}
+
 /* Put & Call Price Styling */
 #call-container,
 #put-container {
 	display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
+}
+
+#call-container span,
+#put-container span {
+	color: #852929;
 }
 
 /* Band Styling */
@@ -214,9 +274,10 @@ table {
 	align-items: center;
 	width: 92.5vw;
 	height: 2rem;
-	border: 1px solid black;
+	margin: 0.1rem;
 	border-radius: 0.3rem;
-	background-color: white;
+	background-color: var(--bg4);
+	color: black;
 	z-index: 10;
 }
 
@@ -224,6 +285,10 @@ table {
   display: grid;
   grid-template-columns: 10fr 2fr 10fr;
   width: 90vw;
+}
+
+#band-outer-container span {
+	color: var(--primary1);
 }
 
 .band-call,
@@ -245,8 +310,8 @@ table {
 	transform: translateX(-50%);
 	width: 6.5vw;
 	height: calc(100% + 1rem);
-	border: 1px solid black;
 	border-radius: 0.5rem;
+	background-color: var(--lightOverlay1);
 }
 
 /* Popup Styling */

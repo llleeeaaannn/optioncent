@@ -8,13 +8,13 @@ const Overview = () => {
   const ticker = useContext(TickerContext);
   const expiry = useContext(ExpiryContext);
 
-
-
   return (
     <div id="overview-container">
       <div className="overview">
         <div className="overview-dte">
-          <span>DTE: {getDTE(expiry)}</span>
+          { expiry &&
+            <span>DTE: {getDTE(expiry)}</span>
+          }
         </div>
 
         <div className="overview-ticker">

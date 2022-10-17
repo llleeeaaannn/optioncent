@@ -1,4 +1,3 @@
-import React from 'react';
 import Call from './call';
 import Put from './put';
 

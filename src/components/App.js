@@ -48,7 +48,6 @@ function App() {
       response = await response.json();
       console.log(response);
       const result = response.results[0];
-      console.log(result['c']);
       setPrice(result['c']);
     }
   }

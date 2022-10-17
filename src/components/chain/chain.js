@@ -3,7 +3,7 @@ import Band from './band';
 import LowChain from './low-chain';
 import HighChain from './high-chain';
 import ChainHeader from './chain-header';
-// import { strikes, options } from '../../data/optiondata';
+import StrikesBorder from './strikes-border';
 import { useState, useContext, useEffect } from 'react';
 import { TickerContext, ExpiryContext } from '../App'
 
@@ -53,12 +53,10 @@ const Chain = ({ changeExpiry, makePopup }) => {
     if (!data) return;
 
     let strikeSet = new Set();
-    for (let option of data) {
-      strikeSet.add(option.strike_price);
-    }
-    const strikeArray = Array.from(strikeSet);
+    for (let option of data) { strikeSet.add(option.strike_price) }
+    let strikeArray = Array.from(strikeSet);
+    strikeArray = strikeArray.sort(function (a, b) {  return a - b;  });
     setStrikes(strikeArray);
-
   }, [data]);
 
   return (
@@ -70,8 +68,7 @@ const Chain = ({ changeExpiry, makePopup }) => {
             <LowChain makePopup={makePopup} />
             <Band />
             <HighChain makePopup={makePopup} />
-            <div id="strikes-border">
-            </div>
+            <StrikesBorder />
           </div>
         </div>
       </StrikeContext.Provider>

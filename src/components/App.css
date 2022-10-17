@@ -355,8 +355,10 @@ body {
 }
 
 .popup {
+	position: relative;
 	width: 50vw;
 	padding: 1rem;
+	padding-top: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: var(--bg1);
 }
@@ -372,6 +374,16 @@ body {
 
 .popup header span {
 	color: var(--primary1);
+}
+
+.popup .close-popup-button {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: 1rem;
+	height: 1rem;
+	fill: var(--primary1);
+	cursor: pointer;
 }
 
 .popup-content {

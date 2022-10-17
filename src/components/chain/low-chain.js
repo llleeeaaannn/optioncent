@@ -38,7 +38,7 @@ const LowChain = ({ makePopup }) => {
 
 
   return (
-    <div>
+    <div className="low-chain">
       { lowStrikes &&
         lowStrikes.map((strike, i) => <Strike strikeObject={lowStrikes[i]} makePopup={makePopup} key={i} />)
       }

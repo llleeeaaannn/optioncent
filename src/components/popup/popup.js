@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import Detail from './detail';
 import { TickerContext, ContractContext, PriceContext } from '../App';
-import { getPercent, getStrike, getFormattedDate, getDTE } from '../../methods/methods';
+import { getPercent, getStrike, getFormattedDate, getDTE, addPlus } from '../../methods/methods';
 import { format } from 'date-fns';
 
 const Popup = ({ hidePopup }) => {
@@ -41,8 +41,8 @@ const Popup = ({ hidePopup }) => {
               {console.log(contract)}
               <Detail name='Price ($):' value={`${contract['day']['close'].toFixed(2)}$`}/>
               <Detail name='Price (%):' value={`${getPercent(contract['day']['close'], price)}%`}/>
-              <Detail name='Dollar Change:' value={`${contract['day']['change'].toFixed(2)}$`}/>
-              <Detail name='Percent Change:' value={`${contract['day']['change_percent'].toFixed(2)}%`}/>
+              <Detail name='Dollar Change:' value={`${addPlus(contract['day']['change'].toFixed(2))}$`}/>
+              <Detail name='Percent Change:' value={`${addPlus(contract['day']['change_percent'].toFixed(2))}%`}/>
               <Detail name='Volume:' value={contract['day']['volume']}/>
               <Detail name='Open Interest:' value={contract['open_interest']}/>
               <Detail name='Expiry:' value={getFormattedDate(contract['details']['expiration_date'], 'P')}/>

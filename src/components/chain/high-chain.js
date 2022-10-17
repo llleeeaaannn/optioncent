@@ -38,7 +38,7 @@ const HighChain = ({ makePopup }) => {
 
 
   return (
-    <div>
+    <div className="high-chain">
       { highStrikes &&
         highStrikes.map((strike, i) => <Strike strikeObject={highStrikes[i]} makePopup={makePopup} key={i} />)
       }

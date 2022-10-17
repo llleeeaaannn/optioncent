@@ -1,8 +1,8 @@
 import React from 'react';
 import Band from './band';
-import Strike from './strike';
 import LowChain from './low-chain';
 import HighChain from './high-chain';
+import ChainHeader from './chain-header';
 // import { strikes, options } from '../../data/optiondata';
 import { useState, useContext, useEffect } from 'react';
 import { TickerContext, ExpiryContext } from '../App'
@@ -23,7 +23,7 @@ const Chain = ({ changeExpiry, makePopup }) => {
     // Get all expirations for said ticker
     // Set first expiration as expiry
     if (!ticker) return;
-    changeExpiry('2022-10-14')
+    changeExpiry('2022-10-21')
   }, [ticker]);
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const Chain = ({ changeExpiry, makePopup }) => {
         throw new Error(message);
       } else {
         response = await response.json();
+        console.log(response);
         setData(response.results);
       }
     }
@@ -65,13 +66,10 @@ const Chain = ({ changeExpiry, makePopup }) => {
       <StrikeContext.Provider value={strikes}>
         <div id="chain-container">
           <div className="chain">
-            <div className="low-chain">
-              <LowChain makePopup={makePopup}/>
-            </div>
+            <ChainHeader />
+            <LowChain makePopup={makePopup} />
             <Band />
-            <div className="high-chain">
-              <HighChain makePopup={makePopup}/>
-            </div>
+            <HighChain makePopup={makePopup} />
             <div id="strikes-border">
             </div>
           </div>

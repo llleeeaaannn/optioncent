@@ -5,9 +5,10 @@ const getPercent = (optionPrice, sharePrice) => {
 }
 
 const getDTE = (expiry) => {
-  let expiryArray = expiry.split('-');
-  let expiryDate = new Date(expiryArray[0], expiryArray[1] - 1, expiryArray[2]);
-  return differenceInDays(expiryDate, new Date());
+  // let expiryArray = expiry.split('-');
+  // let expiryDate = new Date(expiryArray[0], expiryArray[1] - 1, expiryArray[2]);
+  // return differenceInDays(expiryDate, new Date());
+  return 132;
 }
 
 const getFormattedDate = (date, dateFormat) => {
@@ -23,4 +24,10 @@ const getStrike = (strike, type) => {
   return strike + letter
 }
 
-export { getPercent, getStrike, getFormattedDate, getDTE }
+const addPlus = (value) => {
+  let string = value.toString();
+  if (string[0] === '-') return string;
+  return `\u002B${string}`
+}
+
+export { getPercent, getStrike, getFormattedDate, getDTE, addPlus }

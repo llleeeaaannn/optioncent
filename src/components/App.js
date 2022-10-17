@@ -46,6 +46,7 @@ function App() {
       throw new Error(message);
     } else {
       response = await response.json();
+      console.log(response);
       const result = response.results[0];
       console.log(result['c']);
       setPrice(result['c']);

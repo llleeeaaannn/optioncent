@@ -66,6 +66,8 @@ table {
 	--darkOverlay1: rgba(0, 0, 0, 0.05);
 	--darkOverlay2: rgba(0, 0, 0, 0.10);
 	--darkOverlay3: rgba(0, 0, 0, 0.15);
+	--red: red;
+	--green: green;
 
 
 	/* Font Sizes */
@@ -88,7 +90,6 @@ table {
 
 body {
 	background-color: var(--bg1);
-	min-width: 20rem;
 }
 
 /* Header Container Styling */
@@ -157,17 +158,19 @@ body {
 /* Expirybar Styling */
 #overview-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 5vh;
 }
 
 .overview {
   display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(3, 1fr);
   width: 90vw;
+	height: 2rem;
+	padding-top: 0.5rem;
+	padding-bottom: 1rem;
 }
 
 .overview-dte {
@@ -192,6 +195,7 @@ body {
 
 .overview span {
 	color: var(--primary1);
+	font-size: 1rem;
 }
 
 /* All Chain Styling */
@@ -203,6 +207,7 @@ body {
   align-items: flex-start;
   width: 100vw;
   height: 75vh;
+	min-width: 20rem;
 }
 
 .chain {
@@ -212,6 +217,25 @@ body {
   justify-content: center;
   align-items: center;
   width: 90vw;
+}
+
+.chain-header {
+	position: absolute;
+	top: -1.5rem;
+	display: grid;
+	grid-template-columns: 1fr 6.5vw 1fr;
+	justify-items: center;
+	width: 92.5vw;
+	height: 2rem;
+}
+
+.chain-header div {
+	width: 6.5vw;
+}
+
+.chain-header span {
+	color: var(--primary1);
+	font-size: 1rem;
 }
 
 .low-chain,
@@ -260,11 +284,12 @@ body {
 	display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
+	cursor: pointer;
 }
 
 #call-container span,
 #put-container span {
-	color: #852929;
+	color: var(--primary1);
 }
 
 /* Band Styling */
@@ -309,14 +334,14 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	width: 6.5vw;
-	height: calc(100% + 1rem);
+	height: calc(100% + 0.5rem);
 	border-radius: 0.5rem;
 	background-color: var(--lightOverlay1);
 }
 
 /* Popup Styling */
 #popup-container {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	display: flex;
@@ -325,14 +350,15 @@ body {
 	align-items: center;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(100, 100, 100, 0.2);
+	background-color: var(--lightOverlay3);
 	z-index: 100;
 }
 
 .popup {
 	width: 50vw;
-	border: 1px solid black;
-	background-color: rgba(255, 255, 255, 1);
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background-color: var(--bg1);
 }
 
 .popup header {
@@ -340,6 +366,12 @@ body {
 	flex-direction: row;
 	justify-content: center;
 	width: 100%;
+	margin-bottom: 0.5rem;
+	color: var(--primary1);
+}
+
+.popup header span {
+	color: var(--primary1);
 }
 
 .popup-content {
@@ -347,11 +379,24 @@ body {
 	grid-template-columns: 1fr 1fr;
 }
 
+#popup-container .popup-content > :nth-child(2n){
+	padding-left: 1rem;
+	border-left: 0.5px solid grey;
+}
+
+#popup-container .popup-content > :nth-child(1n){
+	padding-right: 1rem;
+}
+
 /* Detail Styling */
 #detail {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 2fr 1fr;
 	padding: 0.25rem;
+}
+
+#detail span {
+	color: var(--primary1);
 }
 
 .detail-name {
@@ -359,5 +404,4 @@ body {
 
 .detail-value {
 	justify-self: end;
-	margin-right: 1rem;
 }

@@ -17,16 +17,8 @@ const Overview = () => {
           <span>DTE: {getDTE(expiry)}</span>
         </div>
 
-        <div className="overview-calls">
-          <span>Calls</span>
-        </div>
-
         <div className="overview-ticker">
           <span>{ticker}</span>
-        </div>
-
-        <div className="overview-puts">
-          <span>Puts</span>
         </div>
 
         <div className="overview-iv">

@@ -76,3 +76,5 @@ function App() {
 }
 
 export default App;
+
+// Get all expiries upon selecting new ticker

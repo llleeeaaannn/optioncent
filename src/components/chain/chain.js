@@ -10,7 +10,7 @@ import { TickerContext, ExpiryContext } from '../App'
 export const ChainContext = React.createContext();
 export const StrikeContext = React.createContext();
 
-const Chain = ({ changeExpiry, makePopup }) => {
+const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
   const ticker = useContext(TickerContext);
   const expiry = useContext(ExpiryContext);
@@ -23,7 +23,25 @@ const Chain = ({ changeExpiry, makePopup }) => {
     // Get all expirations for said ticker
     // Set first expiration as expiry
     if (!ticker) return;
-    changeExpiry('2022-10-21')
+
+    async function fetchExpirations() {
+      let response = await fetch(`https://api.tradier.com/v1/markets/options/expirations?symbol=${ticker}`, {
+        headers: {
+          'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        response = await response.json();
+        const expiryArray = response['expirations']['date']
+        changeExpiryDates(expiryArray);
+        changeExpiry(expiryArray[0])
+      } else {
+        console.log('Error');
+      }
+    }
+
+    fetchExpirations();
   }, [ticker]);
 
   useEffect(() => {

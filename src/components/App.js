@@ -10,14 +10,15 @@ import Popup from './popup/popup';
 export const TickerContext = React.createContext();
 export const PriceContext = React.createContext();
 export const ExpiryContext = React.createContext();
+export const ExpiryDatesContext = React.createContext();
 export const ContractContext = React.createContext();
-
 
 function App() {
 
   const [ticker, setTicker] = useState();
   const [price, setPrice] = useState();
   const [expiry, setExpiry] = useState();
+  const [expiryDates, setExpiryDates] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [contractTicker, setContractTicker] = useState();
 
@@ -28,6 +29,10 @@ function App() {
 
   const changeExpiry = (newExpiry) => {
     setExpiry(newExpiry);
+  }
+
+  const changeExpiryDates = (newDates) => {
+    setExpiryDates(newDates);
   }
 
   const makePopup = (contractTicker) => {
@@ -53,7 +58,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (ticker) fetchPrice();
+    if (ticker) fetchPrice()
   }, [ticker]);
 
   return (
@@ -61,13 +66,15 @@ function App() {
       <TickerContext.Provider value={ticker}>
         <PriceContext.Provider value={price}>
           <ExpiryContext.Provider value={expiry}>
-            <ContractContext.Provider value={contractTicker}>
-              <Searchbar changeTicker={changeTicker}/>
-              <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
-              <Overview />
-              <Chain changeExpiry={changeExpiry} makePopup={makePopup} />
-              { showPopup && <Popup hidePopup={hidePopup} /> }
-          </ContractContext.Provider>
+            <ExpiryDatesContext.Provider value={expiryDates}>
+              <ContractContext.Provider value={contractTicker}>
+                <Searchbar changeTicker={changeTicker}/>
+                <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
+                <Overview />
+                <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makePopup} />
+                { showPopup && <Popup hidePopup={hidePopup} /> }
+              </ContractContext.Provider>
+            </ExpiryDatesContext.Provider>
           </ExpiryContext.Provider>
         </PriceContext.Provider>
       </TickerContext.Provider>
@@ -76,5 +83,3 @@ function App() {
 }
 
 export default App;
-
-// Get all expiries upon selecting new ticker

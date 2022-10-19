@@ -45,15 +45,20 @@ function App() {
   }
 
   async function fetchPrice() {
-    let response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
-    if (!response.ok) {
-      const message = `An error has occured: ${response.status}`;
-      throw new Error(message);
-    } else {
+    let response = await fetch(`https://api.tradier.com/v1/markets/quotes?symbols=${ticker}`, {
+      headers: {
+        'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
+        'Accept': 'application/json'
+      }
+    });
+    if (response.ok) {
       response = await response.json();
       console.log(response);
-      const result = response.results[0];
-      setPrice(result['c']);
+      let sharePrice = response.quotes.quote.last.toFixed(2);
+      console.log(sharePrice);
+      setPrice(sharePrice);
+    } else {
+      console.log('Error');
     }
   }
 
@@ -83,3 +88,15 @@ function App() {
 }
 
 export default App;
+
+// Change all obnject['blah'] to object.blah
+
+// Comment all functions
+
+// Add hover to popup detail values to give exact values and definition if word is hovered
+
+// Add hover to put/call contract when its undefined to say theres no data available
+
+// Add click on ticker to reveal stock info etc
+
+// Add green/red styling depending daily change etc

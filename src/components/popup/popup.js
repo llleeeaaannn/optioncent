@@ -14,20 +14,8 @@ const Popup = ({ hidePopup }) => {
   useEffect(() => {
     if (!contractTicker) return;
 
-    // async function fetchOption() {
-    //   let response = await fetch(`https://api.polygon.io/v3/snapshot/options/${ticker}/${contractTicker}?apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
-    //   if (!response.ok) {
-    //     const message = `An error has occured: ${response.status}`;
-    //     throw new Error(message);
-    //   } else {
-    //     response = await response.json();
-    //     setContract(response.results);
-    //   }
-    // }
-
-    async function fetchExpiratio() {
-      const formattedContractTicker = contractTicker.substring(2);
-      let response = await fetch(`https://api.tradier.com/v1/markets/quotes?symbols=${formattedContractTicker}&greeks=true`, {
+    async function fetchContract() {
+      let response = await fetch(`https://api.tradier.com/v1/markets/quotes?symbols=${contractTicker}&greeks=true`, {
         headers: {
           'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
           'Accept': 'application/json'
@@ -35,18 +23,15 @@ const Popup = ({ hidePopup }) => {
       });
       if (response.ok) {
         response = await response.json();
-        let contractData = response['quotes']['quote'];
-        setContract(contractData);
-        console.log(response);
+        let contractData = response.quotes.quote;
         console.log(contractData);
+        setContract(contractData);
       } else {
         console.log('Error');
       }
     }
 
-    fetchExpiratio()
-
-    // fetchOption();
+    fetchContract()
   }, [contractTicker]);
 
   return (
@@ -61,7 +46,6 @@ const Popup = ({ hidePopup }) => {
               </svg>
             </header>
             <div className="popup-content">
-              {console.log(contract)}
               <Detail name='Price ($):' value={`$${contract['last'].toFixed(2)}`}/>
               <Detail name='Price (%):' value={`${getPercent(contract['last'], price)}%`}/>
               <Detail name='Daily Change:' value={`${addPlusWithDollar(contract['change'].toFixed(2))}`}/>

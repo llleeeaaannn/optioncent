@@ -2,48 +2,32 @@ import React from 'react';
 import { useState, useContext, useEffect } from 'react';
 import { PriceContext } from '../App'
 import { ChainContext } from './chain'
-import { getPercent } from '../../methods/methods'
+import { getPercent, getMid } from '../../methods/methods'
 
-const Call = ({ option, makePopup }) => {
+const Call = ({ optionContract, makePopup }) => {
 
   const options = useContext(ChainContext);
   const price = useContext(PriceContext);
 
-  const [callContract, setCallContract] = useState();
-
-  useEffect(() => {
-    async function fetchOption() {
-      let response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${option}/prev?adjusted=true&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
-      if (!response.ok) {
-        const message = `An error has occured: ${response.status}`;
-        throw new Error(message);
-      }
-      response = await response.json();
-      setCallContract(response.results[0])
-    }
-
-    fetchOption();
-  }, [options]);
-
   return (
-    <div id="call-container" onClick={() => makePopup(option)}>
-      { !callContract &&
-        <>
+    <>
+      { !optionContract &&
+        <div id="call-container" className="empty-option-container">
           <span className="spread">-</span>
           <span className="bid">-</span>
           <span className="mid">-</span>
           <span className="ask">-</span>
-        </>
+        </div>
       }
-      { callContract &&
-        <>
-          <span className="spread">{getPercent(callContract['h'] - callContract['l'], price)}%</span>
-          <span className="bid">{getPercent(callContract['l'], price)}%</span>
-          <span className="mid">{getPercent(callContract['c'], price)}%</span>
-          <span className="ask">{getPercent(callContract['h'], price)}%</span>
-        </>
+      { optionContract &&
+        <div id="call-container" onClick={() => makePopup(optionContract.symbol)}>
+          <span className="spread">{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
+          <span className="bid">{getPercent(optionContract.bid, price)}%</span>
+          <span className="mid">{getPercent(getMid(optionContract.bid, optionContract.ask), price)}%</span>
+          <span className="ask">{getPercent(optionContract.ask, price)}%</span>
+        </div>
       }
-    </div>
+    </>
   )
 }
 

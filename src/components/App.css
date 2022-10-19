@@ -292,6 +292,11 @@ body {
 	cursor: pointer;
 }
 
+#call-container.empty-option-container,
+#put-container.empty-option-container {
+	cursor: default;
+}
+
 #call-container span,
 #put-container span {
 	color: var(--primary1);

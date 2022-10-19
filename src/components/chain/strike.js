@@ -5,11 +5,11 @@ const Strike = ({ strikeObject, makePopup }) => {
 
   return (
     <div id="strike-container">
-      <Call option={strikeObject['call']} makePopup={makePopup}/>
+      <Call optionContract={strikeObject.call} makePopup={makePopup}/>
       <div id="strike">
-        <span>{strikeObject['strike']}</span>
+        <span>{strikeObject.strike}</span>
       </div>
-      <Put option={strikeObject['put']} makePopup={makePopup}/>
+      <Put optionContract={strikeObject.put} makePopup={makePopup}/>
     </div>
   )
 }

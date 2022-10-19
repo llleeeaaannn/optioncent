@@ -20,13 +20,13 @@ const HighChain = ({ makePopup }) => {
       const highStrikesArray = strikes.filter(strike => strike > price);
 
       for (let strikePrice of highStrikesArray) {
-        let contracts = options.filter(option => option.strike_price === strikePrice);
-        let callName = contracts.find(option => option.contract_type === 'call');
-        let putName = contracts.find(option => option.contract_type === 'put');
+        let contracts = options.filter(option => option.strike === strikePrice);
+        let callOption = contracts.find(option => option.option_type === 'call');
+        let putOption = contracts.find(option => option.option_type === 'put');
         const strikeObject = {
           strike: strikePrice,
-          call: callName['ticker'],
-          put: putName['ticker']
+          call: callOption,
+          put: putOption
         };
         strikeAndContracts.push(strikeObject)
       };

@@ -51,17 +51,22 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     if (!expiry) return;
 
     async function fetchChain() {
-      let response = await fetch(`https://api.polygon.io/v3/reference/options/contracts?underlying_ticker=${ticker}&expiration_date=${expiry}&limit=1000&apiKey=ywQbuxHFfODQpfdLiqlGFTbZwyfbpK4T`);
-      if (!response.ok) {
-        const message = `An error has occured: ${response.status}`;
-        throw new Error(message);
-      } else {
+      let response = await fetch(`https://api.tradier.com/v1/markets/options/chains?symbol=${ticker}&expiration=${expiry}`, {
+        headers: {
+          'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
         response = await response.json();
-        console.log(response);
-        setData(response.results);
+        let chainArray = response.options.option
+        console.log(chainArray);
+        setData(chainArray);
+      } else {
+        console.log('Error');
       }
     }
-
+    
     fetchChain()
   }, [expiry, ticker]);
 
@@ -71,9 +76,15 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     if (!data) return;
 
     let strikeSet = new Set();
-    for (let option of data) { strikeSet.add(option.strike_price) }
+    for (let option of data) { strikeSet.add(option.strike) }
     let strikeArray = Array.from(strikeSet);
     strikeArray = strikeArray.sort(function (a, b) {  return a - b;  });
+    console.log(strikeArray);
+
+    // let strikeSet = new Set();
+    // for (let option of data) { strikeSet.add(option.strike) }
+    // let strikeArray = Array.from(strikeSet);
+    // strikeArray = strikeArray.sort(function (a, b) {  return a - b;  });
     setStrikes(strikeArray);
   }, [data]);
 

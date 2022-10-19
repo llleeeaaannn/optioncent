@@ -4,6 +4,12 @@ const getPercent = (optionPrice, sharePrice) => {
   return (optionPrice / sharePrice * 100).toFixed(2);
 }
 
+const getMid = (bid, ask) => {
+  let spread = ask - bid;
+  let mid = bid + spread;
+  return mid.toFixed(2);
+}
+
 const getDTE = (expiry) => {
   let expiryArray = expiry.split('-');
   let expiryDate = new Date(expiryArray[0], expiryArray[1] - 1, expiryArray[2]);
@@ -41,4 +47,4 @@ const addPlusWithDollar = (value) => {
   return `\u002B$${string}`
 }
 
-export { getPercent, getIV, getStrike, getFormattedDate, getDTE, addPlus, addPlusWithDollar }
+export { getPercent, getMid, getIV, getStrike, getFormattedDate, getDTE, addPlus, addPlusWithDollar }

@@ -17,14 +17,17 @@ const Put = ({ optionContract, makePopup }) => {
           <span className="bid">-</span>
           <span className="mid">-</span>
           <span className="ask">-</span>
+          <div className="empty-option-popup">
+            <span>There is no option data available for this contract</span>
+          </div>
         </div>
       }
       { optionContract &&
         <div id="put-container" onClick={() => makePopup(optionContract.symbol)}>
-          <span className="spread">{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
           <span className="bid">{getPercent(optionContract.bid, price)}%</span>
           <span className="mid">{getPercent(getMid(optionContract.bid, optionContract.ask), price)}%</span>
           <span className="ask">{getPercent(optionContract.ask, price)}%</span>
+          <span className="spread">{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
         </div>
       }
     </>

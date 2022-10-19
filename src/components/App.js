@@ -53,9 +53,7 @@ function App() {
     });
     if (response.ok) {
       response = await response.json();
-      console.log(response);
       let sharePrice = response.quotes.quote.last.toFixed(2);
-      console.log(sharePrice);
       setPrice(sharePrice);
     } else {
       console.log('Error');
@@ -89,14 +87,14 @@ function App() {
 
 export default App;
 
-// Change all obnject['blah'] to object.blah
-
 // Comment all functions
 
 // Add hover to popup detail values to give exact values and definition if word is hovered
 
-// Add hover to put/call contract when its undefined to say theres no data available
-
 // Add click on ticker to reveal stock info etc
 
 // Add green/red styling depending daily change etc
+
+// Check if ticker is optionable upon it being searched (use Tradier Option Lookup)
+
+// Add proper error handling for API calls

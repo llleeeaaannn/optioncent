@@ -11,27 +11,26 @@ const LowChain = ({ makePopup }) => {
 
   const [lowStrikes, setLowStrikes] = useState();
 
+  function fetchOptionTickers() {
+    let strikeAndContracts = [];
+    const lowStrikesArray = strikes.filter(strike => strike <= price);
+
+    for (let strikePrice of lowStrikesArray) {
+      let contracts = options.filter(option => option.strike === strikePrice);
+      let callOption = contracts.find(option => option.option_type === 'call');
+      let putOption = contracts.find(option => option.option_type === 'put');
+      const strikeObject = {
+        strike: strikePrice,
+        call: callOption,
+        put: putOption
+      };
+      strikeAndContracts.push(strikeObject);
+    };
+    return strikeAndContracts;
+  }
 
   useEffect(() => {
     if (!strikes) return;
-
-    function fetchOptionTickers() {
-      let strikeAndContracts = [];
-      const lowStrikesArray = strikes.filter(strike => strike <= price);
-
-      for (let strikePrice of lowStrikesArray) {
-        let contracts = options.filter(option => option.strike === strikePrice);
-        let callOption = contracts.find(option => option.option_type === 'call');
-        let putOption = contracts.find(option => option.option_type === 'put');
-        const strikeObject = {
-          strike: strikePrice,
-          call: callOption,
-          put: putOption
-        };
-        strikeAndContracts.push(strikeObject)
-      };
-      return strikeAndContracts;
-    }
 
     setLowStrikes(fetchOptionTickers())
   }, [strikes]);

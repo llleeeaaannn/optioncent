@@ -17,6 +17,9 @@ const Call = ({ optionContract, makePopup }) => {
           <span className="bid">-</span>
           <span className="mid">-</span>
           <span className="ask">-</span>
+          <div className="empty-option-popup">
+            <span>There is no option data available for this contract</span>
+          </div>
         </div>
       }
       { optionContract &&

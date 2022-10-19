@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { tickers } from '../../data/tickers'
 import Dropdown from './searchbar-dropdown';
 
-const Searchbar = ({changeTicker}) => {
+const Searchbar = ({ changeTicker }) => {
 
   const [value, setValue] = useState('');
   const [clicked, setClicked] = useState(false);

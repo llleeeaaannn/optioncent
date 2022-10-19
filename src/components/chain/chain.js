@@ -33,9 +33,9 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
       });
       if (response.ok) {
         response = await response.json();
-        const expiryArray = response['expirations']['date']
+        const expiryArray = response.expirations.date;
         changeExpiryDates(expiryArray);
-        changeExpiry(expiryArray[0])
+        changeExpiry(expiryArray[0]);
       } else {
         console.log('Error');
       }
@@ -60,13 +60,12 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
       if (response.ok) {
         response = await response.json();
         let chainArray = response.options.option
-        console.log(chainArray);
         setData(chainArray);
       } else {
         console.log('Error');
       }
     }
-    
+
     fetchChain()
   }, [expiry, ticker]);
 
@@ -78,13 +77,8 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     let strikeSet = new Set();
     for (let option of data) { strikeSet.add(option.strike) }
     let strikeArray = Array.from(strikeSet);
-    strikeArray = strikeArray.sort(function (a, b) {  return a - b;  });
-    console.log(strikeArray);
-
-    // let strikeSet = new Set();
-    // for (let option of data) { strikeSet.add(option.strike) }
-    // let strikeArray = Array.from(strikeSet);
-    // strikeArray = strikeArray.sort(function (a, b) {  return a - b;  });
+    strikeArray = strikeArray.sort(function (a, b) { return a - b });
+    
     setStrikes(strikeArray);
   }, [data]);
 

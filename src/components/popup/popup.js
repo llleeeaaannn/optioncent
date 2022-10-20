@@ -48,7 +48,7 @@ const Popup = ({ hidePopup }) => {
 
   async function fetchContractHistory() {
     setShowChart(false);
-    let response = await fetch(`https://api.tradier.com/v1/markets/history?symbol=${contractTicker}&interval=daily&start=${getPreviousDate(new Date(), 14, 'y-MM-dd')}&end=${format(new Date(), 'y-MM-dd')}`, {
+    let response = await fetch(`https://api.tradier.com/v1/markets/history?symbol=${contractTicker}&interval=daily&start=${getPreviousDate(new Date(), 30, 'y-MM-dd')}&end=${format(new Date(), 'y-MM-dd')}`, {
       headers: {
         'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
         'Accept': 'application/json'

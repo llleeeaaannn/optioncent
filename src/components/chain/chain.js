@@ -78,7 +78,6 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     for (let option of data) { strikeSet.add(option.strike) }
     let strikeArray = Array.from(strikeSet);
     strikeArray = strikeArray.sort(function (a, b) { return a - b });
-    
     setStrikes(strikeArray);
   }, [data]);
 

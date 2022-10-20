@@ -403,7 +403,19 @@ body {
 }
 
 .popup header span {
+	font-size: 1.25rem;
 	color: var(--primary1);
+}
+
+.popup .popup-prices-header,
+.popup .popup-greeks-header {
+	margin-top: 0.5rem;
+}
+
+.popup .popup-prices-header span,
+.popup .popup-greeks-header span {
+	font-size: 1rem;
+	color: var(--primary5);
 }
 
 .popup .close-popup-button {
@@ -416,17 +428,31 @@ body {
 	cursor: pointer;
 }
 
-.popup-content {
+.popup-prices {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
 
-#popup-container .popup-content > :nth-child(2n){
+#popup-container .popup-prices > :nth-child(2n){
 	padding-left: 1rem;
 	border-left: 0.5px solid grey;
 }
 
-#popup-container .popup-content > :nth-child(1n){
+#popup-container .popup-prices > :nth-child(1n){
+	padding-right: 1rem;
+}
+
+.popup-greeks {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#popup-container .popup-greeks > :nth-child(2n){
+	padding-left: 1rem;
+	border-left: 0.5px solid grey;
+}
+
+#popup-container .popup-greeks > :nth-child(1n){
 	padding-right: 1rem;
 }
 

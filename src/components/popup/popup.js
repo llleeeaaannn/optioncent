@@ -1,8 +1,9 @@
 import { useState, useContext, useEffect } from 'react';
 import StockChart from './stockchart';
 import Detail from './detail';
+import { format } from 'date-fns';
 import { TickerContext, ContractContext, PriceContext } from '../App';
-import { getPercent, getStrike, getIV, getFormattedDate, getDTE, addPlus, addPlusWithDollar } from '../../methods/methods';
+import { getPercent, getStrike, getIV, getFormattedDate, getDTE, getPreviousDate, addPlus, addPlusWithDollar } from '../../methods/methods';
 
 import { myNewData } from "../../data/optiondata";
 
@@ -14,24 +15,17 @@ const Popup = ({ hidePopup }) => {
 
   const [contract, setContract] = useState();
 
-  const [userData, setUserData] = useState({
+  const [showChart, setShowChart] = useState(false);
+  const [chartData, setChartData] = useState({
     labels: myNewData.map((priceHistory) => getFormattedDate(priceHistory.date, 'LLL do')),
     datasets: [
       {
         label: 'PriceHistory',
         data: myNewData.map((priceHistory) => priceHistory.open),
-        backgroundColor: [
-          // "rgba(75,192,192,1)",
-          // "#ecf0f1",
-          // "#50AF95",
-          // "#f3ba2f",
-          // "#2a71d0",
-        ],
         borderColor: 'purple',
         pointBorderColor: 'rgba(0, 0, 0, 0)',
         pointBackgroundColor: 'rgba(0, 0, 0, 0)',
         tension: 0.2,
-        // borderWidth: 2,
       },
     ],
   });
@@ -53,7 +47,8 @@ const Popup = ({ hidePopup }) => {
   }
 
   async function fetchContractHistory() {
-    let response = await fetch(`https://api.tradier.com/v1/markets/history?symbol=${contractTicker}&interval=daily&start=2022-10-05&end=2022-10-19`, {
+    setShowChart(false);
+    let response = await fetch(`https://api.tradier.com/v1/markets/history?symbol=${contractTicker}&interval=daily&start=${getPreviousDate(new Date(), 14, 'y-MM-dd')}&end=${format(new Date(), 'y-MM-dd')}`, {
       headers: {
         'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
         'Accept': 'application/json'
@@ -61,7 +56,21 @@ const Popup = ({ hidePopup }) => {
     });
     if (response.ok) {
       response = await response.json();
-      console.log(response);
+      let history = response.history.day;
+      setChartData({
+        labels: history.map((priceHistory) => getFormattedDate(priceHistory.date, 'LLL do')),
+        datasets: [
+          {
+            label: 'PriceHistory',
+            data: history.map((priceHistory) => priceHistory.open),
+            borderColor: 'purple',
+            pointBorderColor: 'rgba(0, 0, 0, 0)',
+            pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+            tension: 0.25,
+          },
+        ],
+      });
+      setShowChart(true);
     } else {
       console.log('Error');
     }
@@ -109,11 +118,23 @@ const Popup = ({ hidePopup }) => {
               <Detail name='Vega:' value={contract.greeks.vega.toFixed(2)}/>
               <Detail name='Rho:' value={contract.greeks.rho.toFixed(2)}/>
             </div>
-            <div>
-              { userData &&
-                <StockChart chartData={userData}/>
-              }
-            </div>
+            <header className="popup-chart-header">
+              <span>Price History</span>
+            </header>
+            { !showChart &&
+              <div className="popup-chart-loading">
+                <svg width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                  <path fill="none" stroke="currentColor" strokeDasharray="15" strokeDashoffset="15" strokeLinecap="round" strokeWidth="2" d="M12 3C16.9706 3 21 7.02944 21 12">
+                    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/>
+                    <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/>
+                  </path>
+                </svg>
+              </div>
+            }
+            { showChart && chartData &&
+              <StockChart chartData={chartData}/>
+            }
+
           </div>
         </div>
       }

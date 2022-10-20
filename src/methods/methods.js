@@ -1,4 +1,4 @@
-import { format, differenceInDays } from 'date-fns';
+import { format, subDays, differenceInDays } from 'date-fns';
 
 const getPercent = (optionPrice, sharePrice) => {
   return (optionPrice / sharePrice * 100).toFixed(2);
@@ -21,6 +21,11 @@ const getFormattedDate = (date, dateFormat) => {
   let dateArray = date.split('-');
   let newDate = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
   return format(newDate, dateFormat);
+}
+
+const getPreviousDate = (date, daysBefore, dateFormat) => {
+  let previousDate = subDays(date, daysBefore);
+  return format(previousDate, dateFormat);
 }
 
 const getStrike = (strike, type) => {
@@ -47,4 +52,4 @@ const addPlusWithDollar = (value) => {
   return `\u002B$${string}`
 }
 
-export { getPercent, getMid, getIV, getStrike, getFormattedDate, getDTE, addPlus, addPlusWithDollar }
+export { getPercent, getMid, getIV, getStrike, getFormattedDate, getDTE, getPreviousDate, addPlus, addPlusWithDollar }

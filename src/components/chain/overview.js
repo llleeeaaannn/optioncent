@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { iv } from '../../data/optiondata'
-import { getDTE } from '../../methods/methods'
+import { getDTE, getFormattedDate } from '../../methods/methods'
 import { TickerContext, ExpiryContext } from '../App'
 
 const Overview = () => {
@@ -22,7 +22,9 @@ const Overview = () => {
         </div>
 
         <div className="overview-iv">
-          <span>IV: {iv}%</span>
+          { expiry &&
+            <span>Expiry: {getFormattedDate(expiry, 'dd/MM/y')}</span>
+          }
         </div>
       </div>
     </div>

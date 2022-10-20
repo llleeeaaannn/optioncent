@@ -13,14 +13,26 @@ const StockChart = ({chartData}) => {
         enabled: false
       },
       title: {
-        display: true,
-        text: 'Price History'
+        display: false      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false
+        }
+      },
+      y: {
+        grid: {
+          display: false
+        }
       }
     }
   }
 
   return (
-    <Line data={chartData} options={options} />
+    <div className="popup-chart">
+      <Line data={chartData} options={options} />
+    </div>
   )
 }
 

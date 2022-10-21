@@ -44,6 +44,7 @@ function App() {
     setShowPopup(false);
   }
 
+  // Function to get stock price from API and set it 'price' state
   async function fetchPrice() {
     let response = await fetch(`https://api.tradier.com/v1/markets/quotes?symbols=${ticker}`, {
       headers: {
@@ -60,8 +61,9 @@ function App() {
     }
   }
 
+  // UseEffect hook to get stock price upon ticker change
   useEffect(() => {
-    if (ticker) fetchPrice()
+    if (ticker) fetchPrice();
   }, [ticker]);
 
   return (

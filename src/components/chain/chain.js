@@ -8,91 +8,86 @@ import { useState, useContext, useEffect } from 'react';
 import { MainContext } from '../App'
 
 export const ChainContext = React.createContext();
-export const StrikeContext = React.createContext();
 
 const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
   const { ticker, expiry } = useContext(MainContext);
 
-  const [data, setData] = useState();
+  const [options, setOptions] = useState();
   const [strikes, setStrikes] = useState();
 
-  useEffect(() => {
-    // Everytime ticker changes:
-    // Get all expirations for said ticker
-    // Set first expiration as expiry
-    if (!ticker) return;
-
-    async function fetchExpirations() {
-      let response = await fetch(`https://api.tradier.com/v1/markets/options/expirations?symbol=${ticker}`, {
-        headers: {
-          'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
-          'Accept': 'application/json'
-        }
-      });
-      if (response.ok) {
-        response = await response.json();
-        const expiryArray = response.expirations.date;
-        changeExpiryDates(expiryArray);
-        changeExpiry(expiryArray[0]);
-      } else {
-        console.log('Error');
+  // Function to call API to get all expirations for current ticker and set current expiry to the first expiration
+  async function fetchExpirations() {
+    let response = await fetch(`https://api.tradier.com/v1/markets/options/expirations?symbol=${ticker}`, {
+      headers: {
+        'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
+        'Accept': 'application/json'
       }
+    });
+    if (response.ok) {
+      response = await response.json();
+      const expiryArray = response.expirations.date;
+      changeExpiryDates(expiryArray);
+      changeExpiry(expiryArray[0]);
+    } else {
+      console.log('Error');
     }
+  }
+
+  // Function to call API to get all entire options chain for current expiry and ticker
+  async function fetchChain() {
+    let response = await fetch(`https://api.tradier.com/v1/markets/options/chains?symbol=${ticker}&expiration=${expiry}`, {
+      headers: {
+        'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
+        'Accept': 'application/json'
+      }
+    });
+    if (response.ok) {
+      response = await response.json();
+      let chainArray = response.options.option
+      setOptions(chainArray);
+    } else {
+      console.log('Error');
+    }
+  }
+
+  // UseEffect hook used everytime ticker changes to call 'fetchExpirations' to get all expirations and set current expiry to the first expiration
+  useEffect(() => {
+    if (!ticker) return;
 
     fetchExpirations();
   }, [ticker]);
 
+  // UseEffect hook used everytime ticker or expiry changes to call 'fetchChain' to get entire options chain
   useEffect(() => {
-    // Everytime expiry changes:
-    // Get all options chain for said ticker and expiry
-    // Set data as options chain
     if (!expiry) return;
-
-    async function fetchChain() {
-      let response = await fetch(`https://api.tradier.com/v1/markets/options/chains?symbol=${ticker}&expiration=${expiry}`, {
-        headers: {
-          'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
-          'Accept': 'application/json'
-        }
-      });
-      if (response.ok) {
-        response = await response.json();
-        let chainArray = response.options.option
-        setData(chainArray);
-      } else {
-        console.log('Error');
-      }
-    }
 
     fetchChain()
   }, [expiry, ticker]);
 
+  // UseEffect hook used everytime options (the options chain) changes to call create and set a new array of strikes
   useEffect(() => {
-    // Everytime data changes:
-    // Update components with new data
-    if (!data) return;
+    if (!options) return;
 
     let strikeSet = new Set();
-    for (let option of data) { strikeSet.add(option.strike) }
+    for (let option of options) { strikeSet.add(option.strike) }
     let strikeArray = Array.from(strikeSet);
     strikeArray = strikeArray.sort(function (a, b) { return a - b });
+
     setStrikes(strikeArray);
-  }, [data]);
+  }, [options]);
 
   return (
-    <ChainContext.Provider value={data}>
-      <StrikeContext.Provider value={strikes}>
-        <div id="chain-container">
-          <div className="chain">
-            <ChainHeader />
-            <LowChain makePopup={makePopup} />
-            <Band />
-            <HighChain makePopup={makePopup} />
-            <StrikesBorder />
-          </div>
+    <ChainContext.Provider value={ { options, strikes } }>
+      <div id="chain-container">
+        <div className="chain">
+          <ChainHeader />
+          <LowChain makePopup={makePopup} />
+          <Band />
+          <HighChain makePopup={makePopup} />
+          <StrikesBorder />
         </div>
-      </StrikeContext.Provider>
+      </div>
     </ChainContext.Provider>
   )
 }

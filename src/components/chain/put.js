@@ -6,7 +6,7 @@ import { getPercent, getMid } from '../../methods/methods'
 
 const Put = ({ optionContract, makePopup }) => {
 
-  const options = useContext(ChainContext);
+  const { options } = useContext(ChainContext);
   const { price } = useContext(MainContext);
 
   return (

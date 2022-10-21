@@ -1,10 +1,10 @@
 import React from 'react';
 import { useContext } from 'react';
-import { PriceContext } from '../App';
+import { MainContext } from '../App';
 
 const Band = () => {
 
-  const price = useContext(PriceContext);
+  const { price } = useContext(MainContext);
 
   return (
     <div id="band-outer-container">

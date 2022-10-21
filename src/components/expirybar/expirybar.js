@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import React, { useContext, useState, useEffect } from 'react';
-import { ExpiryDatesContext } from '../App';
+import { MainContext } from '../App';
 import { getFormattedDate } from '../../methods/methods';
 import Expiry from './expiry';
 
@@ -8,7 +8,7 @@ export const ActiveExpiryContext = React.createContext();
 
 const Expirybar = ({ changeExpiry }) => {
 
-  const expiryDates = useContext(ExpiryDatesContext);
+  const { expiryDates } = useContext(MainContext);
 
   const [activeExpiry, setActiveExpiry] = useState(expiryDates[0]);
 

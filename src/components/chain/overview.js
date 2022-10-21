@@ -1,12 +1,11 @@
 import { useContext } from 'react';
 import { iv } from '../../data/optiondata'
 import { getDTE, getFormattedDate } from '../../methods/methods'
-import { TickerContext, ExpiryContext } from '../App'
+import { MainContext } from '../App'
 
 const Overview = () => {
 
-  const ticker = useContext(TickerContext);
-  const expiry = useContext(ExpiryContext);
+  const { ticker, expiry } = useContext(MainContext);
 
   return (
     <div id="overview-container">

@@ -1,11 +1,11 @@
 import Strike from './strike';
 import { useState, useEffect, useContext } from 'react';
-import { PriceContext } from '../App';
+import { MainContext } from '../App';
 import { ChainContext, StrikeContext } from './chain';
 
 const HighChain = ({ makePopup }) => {
 
-  const price = useContext(PriceContext);
+  const { price } = useContext(MainContext);
   const options = useContext(ChainContext);
   const strikes = useContext(StrikeContext);
 

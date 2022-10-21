@@ -2,16 +2,14 @@ import { useState, useContext, useEffect } from 'react';
 import StockChart from './stockchart';
 import Detail from './detail';
 import { format } from 'date-fns';
-import { TickerContext, ContractContext, PriceContext } from '../App';
+import { MainContext } from '../App';
 import { getPercent, getStrike, getIV, getFormattedDate, getDTE, getPreviousDate, addPlus, addPlusWithDollar } from '../../methods/methods';
 
 import { myNewData } from "../../data/optiondata";
 
 const Popup = ({ hidePopup }) => {
 
-  const price = useContext(PriceContext);
-  const ticker = useContext(TickerContext);
-  const contractTicker = useContext(ContractContext);
+  const { ticker, price, contractTicker } = useContext(MainContext);
 
   const [contract, setContract] = useState();
 

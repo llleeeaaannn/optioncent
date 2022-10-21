@@ -5,15 +5,14 @@ import HighChain from './high-chain';
 import ChainHeader from './chain-header';
 import StrikesBorder from './strikes-border';
 import { useState, useContext, useEffect } from 'react';
-import { TickerContext, ExpiryContext } from '../App'
+import { MainContext } from '../App'
 
 export const ChainContext = React.createContext();
 export const StrikeContext = React.createContext();
 
 const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
-  const ticker = useContext(TickerContext);
-  const expiry = useContext(ExpiryContext);
+  const { ticker, expiry } = useContext(MainContext);
 
   const [data, setData] = useState();
   const [strikes, setStrikes] = useState();

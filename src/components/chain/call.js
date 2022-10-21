@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
-import { PriceContext } from '../App'
+import { MainContext } from '../App'
 import { ChainContext } from './chain'
 import { getPercent, getMid } from '../../methods/methods'
 
 const Call = ({ optionContract, makePopup }) => {
 
   const options = useContext(ChainContext);
-  const price = useContext(PriceContext);
+  const { price } = useContext(MainContext);
 
   return (
     <>

@@ -7,11 +7,7 @@ import Chain from './chain/chain';
 import Overview from './chain/overview';
 import Popup from './popup/popup';
 
-export const TickerContext = React.createContext();
-export const PriceContext = React.createContext();
-export const ExpiryContext = React.createContext();
-export const ExpiryDatesContext = React.createContext();
-export const ContractContext = React.createContext();
+export const MainContext = React.createContext();
 
 function App() {
 
@@ -67,23 +63,15 @@ function App() {
   }, [ticker]);
 
   return (
-    <div>
-      <TickerContext.Provider value={ticker}>
-        <PriceContext.Provider value={price}>
-          <ExpiryContext.Provider value={expiry}>
-            <ExpiryDatesContext.Provider value={expiryDates}>
-              <ContractContext.Provider value={contractTicker}>
-                <Searchbar changeTicker={changeTicker}/>
-                <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
-                <Overview />
-                <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makePopup} />
-                { showPopup && <Popup hidePopup={hidePopup} /> }
-              </ContractContext.Provider>
-            </ExpiryDatesContext.Provider>
-          </ExpiryContext.Provider>
-        </PriceContext.Provider>
-      </TickerContext.Provider>
-    </div>
+    <>
+      <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker } }>
+        <Searchbar changeTicker={changeTicker}/>
+        <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
+        <Overview />
+        <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makePopup} />
+        { showPopup && <Popup hidePopup={hidePopup} /> }
+      </MainContext.Provider>
+    </>
   );
 }
 

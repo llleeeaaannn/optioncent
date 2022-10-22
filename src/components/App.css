@@ -146,7 +146,7 @@ body {
 .searchbar-form input {
   width: 20rem;
 	height: 2rem;
-	padding: 0.25rem 0.5rem;
+	padding: 0.25rem 0.75rem;
 	margin-bottom: 0.3rem;
 	border: none;
 	border-radius: 1rem;

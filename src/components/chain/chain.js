@@ -11,7 +11,7 @@ export const ChainContext = React.createContext();
 
 const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
-  const { ticker, expiry, makeError } = useContext(MainContext);
+  const { ticker, expiry, makeError, optionable, setOptionable } = useContext(MainContext);
 
   const [options, setOptions] = useState();
   const [strikes, setStrikes] = useState();
@@ -27,14 +27,15 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     if (response.ok) {
       response = await response.json();
       if (response.expirations === null) {
-        makeError('There is no option data available for this ticker');
+        setOptionable(false);
+        makeError('Unfortunately there is no option data available for this ticker');
       } else {
         const expiryArray = response.expirations.date;
         changeExpiryDates(expiryArray);
         changeExpiry(expiryArray[0]);
       }
     } else {
-      makeError('Unable to fetch option data for this ticker, please try again');
+      makeError('Unable to retrieve option data for this ticker, please try again');
     }
   }
 
@@ -48,9 +49,14 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     });
     if (response.ok) {
       response = await response.json();
-      response.options === null ? makeError('There is no option data available for this ticker') : setOptions(response.options.option);
+      if (response.options === null) {
+        setOptionable(false);
+        makeError('Unfortunately there is no option data available for this ticker')
+      } else {
+        setOptions(response.options.option);
+      }
     } else {
-      makeError('Unable to retrieve option data this ticker, please try again');
+      makeError('Unable to retrieve option data for this ticker, please try again');
     }
   }
 
@@ -65,7 +71,7 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
   useEffect(() => {
     if (!expiry) return;
 
-    fetchChain()
+    fetchChain();
   }, [expiry, ticker]);
 
   // UseEffect hook used everytime options (the options chain) changes to call create and set a new array of strikes

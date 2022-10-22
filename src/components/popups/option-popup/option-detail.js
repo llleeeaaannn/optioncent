@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Detail = ({ name, value }) => {
+const OptionDetail = ({ name, value }) => {
   return (
     <div id="detail">
       <span className="detail-name">{name}</span>
@@ -9,4 +9,4 @@ const Detail = ({ name, value }) => {
   )
 }
 
-export default Detail;
+export default OptionDetail;

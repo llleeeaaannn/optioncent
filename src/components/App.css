@@ -152,6 +152,7 @@ body {
 	border-radius: 1rem;
 	background-color: var(--bg3);
 	box-shadow: 0rem 0rem 0.5rem 0.5rem var(--darkOverlay4);
+	text-transform: uppercase;
 }
 
 .searchbar-form input:focus {
@@ -178,6 +179,7 @@ body {
 
 .dropdown-item {
 	padding: 0.25rem;
+	padding-left: 0.6rem;
 	cursor: pointer;
 }
 
@@ -576,7 +578,8 @@ body {
 
 .error {
 	position: relative;
-	width: 50vw;
+	width: 40vw;
+	min-width: 20rem;
 	padding: 1rem;
 	padding-top: 0.5rem;
 	border-radius: 0.5rem;
@@ -595,8 +598,8 @@ body {
 }
 
 .error header span {
-	font-size: 1.25rem;
 	color: var(--primary1);
+	font-size: 1.25rem;
 }
 
 .close-error-button {
@@ -617,4 +620,5 @@ body {
 }
 
 .error-message span {
+	text-align: center;
 }

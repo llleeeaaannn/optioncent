@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { MainContext } from '../App'
+import { MainContext } from '../../App'
 
 const ErrorAlert = ({ hideError }) => {
 

@@ -5,8 +5,8 @@ import Searchbar from './searchbar/searchbar';
 import Expirybar from './expirybar/expirybar';
 import Chain from './chain/chain';
 import Overview from './chain/overview';
-import Popup from './popup/popup';
-import ErrorAlert from './error/erroralert'
+import OptionPopup from './popups/option-popup/option-popup';
+import ErrorAlert from './popups/error/erroralert'
 
 export const MainContext = React.createContext();
 
@@ -16,10 +16,11 @@ function App() {
   const [price, setPrice] = useState();
   const [expiry, setExpiry] = useState();
   const [expiryDates, setExpiryDates] = useState([]);
+  const [contractTicker, setContractTicker] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [error, setError] = useState('');
   const [showError, setShowError] = useState(false);
-  const [contractTicker, setContractTicker] = useState();
+  const [optionable, setOptionable] = useState(true);
 
 
   const changeTicker = (newTicker) => {
@@ -54,6 +55,7 @@ function App() {
 
   // Function to get stock price from API and set it 'price' state
   async function fetchPrice() {
+    setOptionable(true);
     let response = await fetch(`https://api.tradier.com/v1/markets/quotes?symbols=${ticker}`, {
       headers: {
         'Authorization': 'Bearer hVEHMAAnKrWiKuc5sBN9720QtWTg',
@@ -75,12 +77,16 @@ function App() {
 
   return (
     <>
-      <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError } }>
+      <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable } }>
         <Searchbar changeTicker={changeTicker}/>
-        <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
-        <Overview />
-        <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makePopup} />
-        { showPopup && <Popup hidePopup={hidePopup} /> }
+        { optionable &&
+          <>
+            <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
+            <Overview />
+            <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makePopup} />
+          </>
+        }
+        { showPopup && <OptionPopup hidePopup={hidePopup} /> }
         { showError && <ErrorAlert hideError={hideError} /> }
       </MainContext.Provider>
     </>

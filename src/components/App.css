@@ -45,7 +45,7 @@ table {
 /* Variable Styling */
 :root {
 	/* Colours */
-	--bg1: rgba(18, 18, 18, 1);
+	/* --bg1: rgba(18, 18, 18, 1);
 	--bg2: rgba(30.75, 30.75, 30.75, 1);
 	--bg3: rgba(43.5, 43.5, 43.5, 1);
 	--bg4: rgba(56.25, 56.25, 56.25, 1);
@@ -68,11 +68,37 @@ table {
 	--darkOverlay1: rgba(0, 0, 0, 0.05);
 	--darkOverlay2: rgba(0, 0, 0, 0.10);
 	--darkOverlay3: rgba(0, 0, 0, 0.15);
-	--darkOverlay4: rgba(0, 0, 0, 0.20);
-	--darkOverlay5: rgba(0, 0, 0, 0.25);
+	--darkOverlay4: rgba(0, 0, 0, 0.25);
+	--darkOverlay5: rgba(0, 0, 0, 0.50);
 	--red: red;
-	--green: green;
+	--green: green; */
 
+
+	--bg1: rgba(10, 10, 10, 1);
+	--bg2: rgba(20, 20, 20, 1);
+	--bg3: rgba(30, 30, 30, 1);
+	--bg4: rgba(40, 40, 40, 1);
+	--bg5: rgba(50, 50, 50, 1);
+	--primary1: rgba(255, 255, 255, 1);
+	--primary2: rgba(245, 245, 245, 1);
+	--primary3: rgba(235, 235, 235, 1);
+	--primary4: rgba(225, 225, 225, 1);
+	--primary5: rgba(215, 215, 215, 1);
+	--secondary1: rgba(145, 25, 141, 1);
+	--secondary2: rgba(162, 57, 160, 1);
+	--secondary3: rgba(192, 84, 190, 1);
+	--secondary4: rgba(194, 112, 192, 1);
+	--secondary5: rgba(214, 169, 213, 1);
+	--lightOverlay1: rgba(255, 255, 255, 0.05);
+	--lightOverlay2: rgba(255, 255, 255, 0.10);
+	--lightOverlay3: rgba(255, 255, 255, 0.15);
+	--lightOverlay4: rgba(255, 255, 255, 0.25);
+	--lightOverlay5: rgba(255, 255, 255, 0.50);
+	--darkOverlay1: rgba(0, 0, 0, 0.05);
+	--darkOverlay2: rgba(0, 0, 0, 0.10);
+	--darkOverlay3: rgba(0, 0, 0, 0.15);
+	--darkOverlay4: rgba(0, 0, 0, 0.25);
+	--darkOverlay5: rgba(0, 0, 0, 0.50);
 
 	/* Font Sizes */
 	--fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
@@ -125,6 +151,7 @@ body {
 	border: none;
 	border-radius: 1rem;
 	background-color: var(--bg3);
+	box-shadow: 0rem 0rem 0.5rem 0.5rem var(--darkOverlay4);
 }
 
 .searchbar-form input:focus {
@@ -177,6 +204,7 @@ body {
 	padding: 0.15rem;
 	border-radius: 0.5rem;
 	background-color: var(--bg2);
+	box-shadow: 0rem 0rem 1rem 0.5rem var(--darkOverlay4);
 }
 
 .expiry {
@@ -265,8 +293,7 @@ body {
 	grid-template-columns: 1fr 6.5vw 1fr;
 	justify-items: center;
 	width: 92.5vw;
-	height: 2rem;
-}
+	height: 2rem;}
 
 .chain-header div {
 	width: 6.5vw;
@@ -290,7 +317,7 @@ body {
 .low-chain #put-container,
 .high-chain #call-container,
 .high-chain #put-container {
-	border-bottom: 0.5px solid var(--primary5);
+	border-bottom: 0.25px solid var(--primary5);
 }
 
 .low-chain :last-child > #call-container,
@@ -420,6 +447,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background-color: var(--lightOverlay3);
+	cursor: pointer;
 	z-index: 100;
 }
 
@@ -430,6 +458,8 @@ body {
 	padding-top: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: var(--bg1);
+	box-shadow: 0rem 0rem 1rem 0.5rem var(--darkOverlay4);
+	cursor: auto;
 }
 
 .popup header {
@@ -526,4 +556,65 @@ body {
 
 .detail-value {
 	justify-self: end;
+}
+
+/* Error Styling */
+#error-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--lightOverlay3);
+	cursor: pointer;
+	z-index: 100;
+}
+
+.error {
+	position: relative;
+	width: 50vw;
+	padding: 1rem;
+	padding-top: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: var(--bg1);
+	box-shadow: 0rem 0rem 1rem 0.5rem var(--darkOverlay4);
+	cursor: auto;
+}
+
+.error header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 0.5rem;
+	color: var(--primary1);
+}
+
+.error header span {
+	font-size: 1.25rem;
+	color: var(--primary1);
+}
+
+.close-error-button {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: 1rem;
+	height: 1rem;
+	fill: var(--primary1);
+	cursor: pointer;
+}
+
+.error-message {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.error-message span {
 }

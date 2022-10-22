@@ -23,6 +23,7 @@ const Searchbar = ({ changeTicker }) => {
     changeTicker(suggestion);
   }
 
+  
   useEffect(() => {
     !clicked ? setSuggestions(getSuggestions()) : setClicked(false);
   }, [value]);

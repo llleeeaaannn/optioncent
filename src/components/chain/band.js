@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { MainContext } from '../App';
+import { ChainContext } from './chain';
 
 const Band = () => {
 

@@ -10,6 +10,7 @@ const LowChain = ({ makePopup }) => {
 
   const [lowStrikes, setLowStrikes] = useState();
 
+  // Function to filter through options chain and return array of objects where each strike has an object with its corresponding put and call ticker
   function fetchOptionTickers() {
     let strikeAndContracts = [];
     const lowStrikesArray = strikes.filter(strike => strike <= price);
@@ -28,6 +29,7 @@ const LowChain = ({ makePopup }) => {
     return strikeAndContracts;
   }
 
+  // UseEffect hook used when 'strikes' changes. The hook sets 'lowStrikes' to return value of the 'fetchOptionTickers' function
   useEffect(() => {
     if (!strikes) return;
 

@@ -11,7 +11,7 @@ export const ChainContext = React.createContext();
 
 const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
-  const { ticker, expiry } = useContext(MainContext);
+  const { ticker, expiry, makeError } = useContext(MainContext);
 
   const [options, setOptions] = useState();
   const [strikes, setStrikes] = useState();
@@ -26,11 +26,15 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     });
     if (response.ok) {
       response = await response.json();
-      const expiryArray = response.expirations.date;
-      changeExpiryDates(expiryArray);
-      changeExpiry(expiryArray[0]);
+      if (response.expirations === null) {
+        makeError('There is no option data available for this ticker');
+      } else {
+        const expiryArray = response.expirations.date;
+        changeExpiryDates(expiryArray);
+        changeExpiry(expiryArray[0]);
+      }
     } else {
-      console.log('Error');
+      makeError('Unable to fetch option data for this ticker, please try again');
     }
   }
 
@@ -44,10 +48,9 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     });
     if (response.ok) {
       response = await response.json();
-      let chainArray = response.options.option
-      setOptions(chainArray);
+      response.options === null ? makeError('There is no option data available for this ticker') : setOptions(response.options.option);
     } else {
-      console.log('Error');
+      makeError('Unable to retrieve option data this ticker, please try again');
     }
   }
 
@@ -80,13 +83,15 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
   return (
     <ChainContext.Provider value={ { options, strikes } }>
       <div id="chain-container">
-        <div className="chain">
-          <ChainHeader />
-          <LowChain makePopup={makePopup} />
-          <Band />
-          <HighChain makePopup={makePopup} />
-          <StrikesBorder />
-        </div>
+        { options &&
+          <div className="chain">
+            <ChainHeader />
+            <LowChain makePopup={makePopup} />
+            <Band />
+            <HighChain makePopup={makePopup} />
+            <StrikesBorder />
+          </div>
+        }
       </div>
     </ChainContext.Provider>
   )

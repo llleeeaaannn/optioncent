@@ -16,6 +16,7 @@ const Expirybar = ({ changeExpiry }) => {
     setActiveExpiry(date)
   }
 
+  // UseEffect hook used when expiryDates changes. It sets the first expiry of the expiryDates array as active (for styling)
   useEffect(() => {
     if (expiryDates) setActiveExpiry(expiryDates[0]);
   }, [expiryDates]);

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { iv } from '../../data/optiondata'
-import { getDTE, getFormattedDate } from '../../methods/methods'
-import { MainContext } from '../App'
+import { getDTE, getFormattedDate } from '../../methods/methods';
+import { MainContext } from '../App';
+import { ChainContext } from './chain';
 
 const Overview = () => {
 
@@ -9,23 +9,23 @@ const Overview = () => {
 
   return (
     <div id="overview-container">
-      <div className="overview">
-        <div className="overview-dte">
-          { expiry &&
-            <span>DTE: {getDTE(expiry)}</span>
-          }
-        </div>
+      { expiry &&
+        <div className="overview">
+          <div className="overview-dte">
+              <span>DTE: {getDTE(expiry)}</span>
+          </div>
 
-        <div className="overview-ticker">
-          <span>{ticker}</span>
-        </div>
+          <div className="overview-ticker">
+            { ticker &&
+              <span>{ticker}</span>
+            }
+          </div>
 
-        <div className="overview-iv">
-          { expiry &&
-            <span>Expiry: {getFormattedDate(expiry, 'dd/MM/y')}</span>
-          }
+          <div className="overview-iv">
+              <span>Expiry: {getFormattedDate(expiry, 'dd/MM/y')}</span>
+          </div>
         </div>
-      </div>
+      }
     </div>
   )
 }

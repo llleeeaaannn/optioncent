@@ -4,29 +4,16 @@ import Detail from './detail';
 import { format } from 'date-fns';
 import { MainContext } from '../App';
 import { getPercent, getStrike, getIV, getFormattedDate, getDTE, getPreviousDate, addPlus, addPlusWithDollar } from '../../methods/methods';
-
 import { myNewData } from "../../data/optiondata";
 
 const Popup = ({ hidePopup }) => {
 
-  const { ticker, price, contractTicker } = useContext(MainContext);
+  const { ticker, price, contractTicker, makeError } = useContext(MainContext);
 
   const [contract, setContract] = useState();
 
   const [showChart, setShowChart] = useState(false);
-  const [chartData, setChartData] = useState({
-    labels: myNewData.map((priceHistory) => getFormattedDate(priceHistory.date, 'LLL do')),
-    datasets: [
-      {
-        label: 'PriceHistory',
-        data: myNewData.map((priceHistory) => priceHistory.open),
-        borderColor: 'purple',
-        pointBorderColor: 'rgba(0, 0, 0, 0)',
-        pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-        tension: 0.2,
-      },
-    ],
-  });
+  const [chartData, setChartData] = useState();
 
   async function fetchContract() {
     let response = await fetch(`https://api.tradier.com/v1/markets/quotes?symbols=${contractTicker}&greeks=true`, {
@@ -37,10 +24,9 @@ const Popup = ({ hidePopup }) => {
     });
     if (response.ok) {
       response = await response.json();
-      let contractData = response.quotes.quote;
-      setContract(contractData);
+      response.quotes.hasOwnProperty('quote') ? setContract(response.quotes.quote) : makeError('Unfortunately there is no data available for this contract');
     } else {
-      console.log('Error');
+      makeError('Unable to retrieve data for this contract, please try again')
     }
   }
 
@@ -54,23 +40,29 @@ const Popup = ({ hidePopup }) => {
     });
     if (response.ok) {
       response = await response.json();
-      let history = response.history.day;
-      setChartData({
-        labels: history.map((priceHistory) => getFormattedDate(priceHistory.date, 'LLL do')),
-        datasets: [
-          {
-            label: 'PriceHistory',
-            data: history.map((priceHistory) => priceHistory.open),
-            borderColor: 'purple',
-            pointBorderColor: 'rgba(0, 0, 0, 0)',
-            pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-            tension: 0.25,
-          },
-        ],
-      });
-      setShowChart(true);
+      if (response.history === null) {
+        setShowChart(false);
+      } else if (!(response.history.day instanceof Array)) {
+        setShowChart(false);
+      } else {
+        let history = response.history.day;
+        setChartData({
+          labels: history.map((priceHistory) => getFormattedDate(priceHistory.date, 'LLL do')),
+          datasets: [
+            {
+              label: 'PriceHistory',
+              data: history.map((priceHistory) => priceHistory.open),
+              borderColor: 'purple',
+              pointBorderColor: 'rgba(0, 0, 0, 0)',
+              pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+              tension: 0.25,
+            },
+          ],
+        });
+        setShowChart(true);
+      }
     } else {
-      console.log('Error');
+      setShowChart(false);
     }
   }
 

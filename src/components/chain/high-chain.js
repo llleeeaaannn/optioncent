@@ -10,6 +10,7 @@ const HighChain = ({ makePopup }) => {
 
   const [highStrikes, setHighStrikes] = useState();
 
+  // Function to filter through options chain and return array of objects where each strike has an object with its corresponding put and call ticker
   function fetchOptionTickers() {
     let strikeAndContracts = [];
     const highStrikesArray = strikes.filter(strike => strike > price);
@@ -28,6 +29,7 @@ const HighChain = ({ makePopup }) => {
     return strikeAndContracts;
   }
 
+  // UseEffect hook used when 'strikes' changes. The hook sets 'highStrikes' to return value of the 'fetchOptionTickers' function
   useEffect(() => {
     if (!strikes) return;
 

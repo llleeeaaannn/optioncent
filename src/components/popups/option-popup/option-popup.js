@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import StockChart from './stockchart';
+import OptionChart from './optionchart';
 import OptionDetail from './option-detail';
 import { format } from 'date-fns';
 import { MainContext } from '../../App';
@@ -125,7 +125,7 @@ const OptionPopup = ({ hidePopup }) => {
               </div>
             }
             { showChart && chartData &&
-              <StockChart chartData={chartData}/>
+              <OptionChart chartData={chartData}/>
             }
 
           </div>

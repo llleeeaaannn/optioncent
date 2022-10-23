@@ -241,6 +241,8 @@ body {
 	height: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 1rem;
+	cursor: pointer;
+	z-index: 1000;
 }
 
 .overview-dte {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const OptionDetail = ({ name, value }) => {
   return (
     <div id="detail">

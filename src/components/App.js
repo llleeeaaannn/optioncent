@@ -17,7 +17,7 @@ function App() {
   const [expiry, setExpiry] = useState();
   const [expiryDates, setExpiryDates] = useState([]);
   const [contractTicker, setContractTicker] = useState();
-  const [showPopup, setShowPopup] = useState(false);
+  const [showOptionPopup, setShowOptionPopup] = useState(false);
   const [error, setError] = useState('');
   const [showError, setShowError] = useState(false);
   const [optionable, setOptionable] = useState(true);
@@ -35,13 +35,13 @@ function App() {
     setExpiryDates(newDates);
   }
 
-  const makePopup = (contractTicker) => {
+  const makeOptionPopup = (contractTicker) => {
     setContractTicker(contractTicker);
-    setShowPopup(true);
+    setShowOptionPopup(true);
   }
 
-  const hidePopup = () => {
-    setShowPopup(false);
+  const hideOptionPopup = () => {
+    setShowOptionPopup(false);
   }
 
   const makeError = (message) => {
@@ -83,10 +83,10 @@ function App() {
           <>
             <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
             <Overview />
-            <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makePopup} />
+            <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makeOptionPopup} />
           </>
         }
-        { showPopup && <OptionPopup hidePopup={hidePopup} /> }
+        { showOptionPopup && <OptionPopup hidePopup={hideOptionPopup} /> }
         { showError && <ErrorAlert hideError={hideError} /> }
       </MainContext.Provider>
     </>

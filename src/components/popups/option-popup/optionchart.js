@@ -1,7 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
-const StockChart = ({chartData}) => {
+const OptionChart = ({chartData}) => {
 
   const options = {
     plugins: {
@@ -35,4 +35,4 @@ const StockChart = ({chartData}) => {
   )
 }
 
-export default StockChart;
+export default OptionChart;

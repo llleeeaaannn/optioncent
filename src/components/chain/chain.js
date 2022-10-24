@@ -11,7 +11,7 @@ export const ChainContext = React.createContext();
 
 const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
-  const { ticker, expiry, makeError, optionable, setOptionable } = useContext(MainContext);
+  const { ticker, expiry, makeError, setOptionable } = useContext(MainContext);
 
   const [options, setOptions] = useState();
   const [strikes, setStrikes] = useState();

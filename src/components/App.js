@@ -1,12 +1,15 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { dates } from '../data/tickers'
+import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { darkTheme, lightTheme } from '../data/themes';
+import Title from './title/title';
 import Searchbar from './searchbar/searchbar';
+import SettingsContainer from './settings/settings-container';
 import Expirybar from './expirybar/expirybar';
 import Chain from './chain/chain';
 import Overview from './chain/overview';
 import OptionPopup from './popups/option-popup/option-popup';
-import ErrorAlert from './popups/error/erroralert'
+import ErrorAlert from './popups/error/erroralert';
 
 export const MainContext = React.createContext();
 
@@ -21,7 +24,7 @@ function App() {
   const [error, setError] = useState('');
   const [showError, setShowError] = useState(false);
   const [optionable, setOptionable] = useState(true);
-
+  const [theme, setTheme] = useState(false);
 
   const changeTicker = (newTicker) => {
     setTicker(newTicker);
@@ -77,18 +80,27 @@ function App() {
 
   return (
     <>
-      <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable } }>
-        <Searchbar changeTicker={changeTicker}/>
-        { optionable &&
-          <>
-            <Expirybar changeExpiry={changeExpiry} expiryDates={dates}/>
-            <Overview />
-            <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makeOptionPopup} />
-          </>
-        }
-        { showOptionPopup && <OptionPopup hidePopup={hideOptionPopup} /> }
-        { showError && <ErrorAlert hideError={hideError} /> }
-      </MainContext.Provider>
+      <HelmetProvider>
+        <Helmet>
+          <style>{theme ? darkTheme : lightTheme}</style>
+        </Helmet>
+        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme } }>
+          <div id="header-container">
+            <Searchbar changeTicker={changeTicker}/>
+            <Title />
+            <SettingsContainer />
+          </div>
+          { optionable &&
+            <>
+              <Expirybar changeExpiry={changeExpiry} />
+              <Overview />
+              <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makeOptionPopup} />
+            </>
+          }
+          { showOptionPopup && <OptionPopup hidePopup={hideOptionPopup} /> }
+          { showError && <ErrorAlert hideError={hideError} /> }
+        </MainContext.Provider>
+      </HelmetProvider>
     </>
   );
 }
@@ -98,8 +110,6 @@ export default App;
 // Comment all functions
 
 // Add hover to popup detail values to give exact values and definition if word is hovered
-
-// Add click on ticker to reveal stock info etc
 
 // Add green/red styling depending on daily change etc
 

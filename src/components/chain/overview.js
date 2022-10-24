@@ -21,7 +21,7 @@ const Overview = () => {
             }
           </div>
 
-          <div className="overview-iv">
+          <div className="overview-expiry">
               <span>Expiry: {getFormattedDate(expiry, 'dd/MM/y')}</span>
           </div>
         </div>

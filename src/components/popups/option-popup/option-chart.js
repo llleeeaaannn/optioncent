@@ -29,7 +29,7 @@ const OptionChart = ({chartData}) => {
   }
 
   return (
-    <div className="popup-chart">
+    <div className="option-popup-chart">
       <Line data={chartData} options={options} />
     </div>
   )

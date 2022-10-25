@@ -43,7 +43,6 @@ table {
 }
 
 /* Variable Styling */
-/* :root { */
 	/* Colours */
 	/* --bg1: rgba(18, 18, 18, 1);
 	--bg2: rgba(30.75, 30.75, 30.75, 1);
@@ -100,18 +99,22 @@ table {
 	--darkOverlay4: rgba(0, 0, 0, 0.25);
 	--darkOverlay5: rgba(0, 0, 0, 0.50); */
 
-	/* Font Sizes */
-	/* --fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+/* Root Styling */
+:root {
+	/* Font Styling */
+	--fs-xxs: clamp(0.51rem, -0.02vw + 0.52rem, 0.5rem);
+	--fs-xs: clamp(0.64rem, 0.05vw + 0.63rem, 0.67rem);
+	--fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
 	--fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
 	--fs-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
 	--fs-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
 	--fs-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
 	--fs-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
 	--fs-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
-} */
+}
 
 /* Fonts */
-/* @font-face {
+@font-face {
     font-family: 'Futura Headline';
 		src: local('FuturaHeadline'), url(../fonts/FuturaHeadline.woff) format('woff');
     font-weight: bold;
@@ -125,7 +128,7 @@ table {
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-} */
+}
 
 /* General Styling */
 * {
@@ -513,7 +516,7 @@ body {
 }
 
 /* Popup Styling */
-#popup-container {
+#option-popup-container {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -528,7 +531,7 @@ body {
 	z-index: 100;
 }
 
-.popup {
+.option-popup {
 	position: relative;
 	width: 50vw;
 	padding: 1rem;
@@ -539,7 +542,7 @@ body {
 	cursor: auto;
 }
 
-.popup header {
+.option-popup header {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -548,25 +551,25 @@ body {
 	color: var(--primary1);
 }
 
-.popup header span {
+.option-popup header span {
 	font-size: 1.25rem;
 	color: var(--primary1);
 }
 
-.popup-prices-header,
-.popup-greeks-header,
-.popup-chart-header {
+.option-popup-prices-header,
+.option-popup-greeks-header,
+.option-popup-chart-header {
 	margin-top: 0.5rem;
 }
 
-.popup .popup-prices-header span,
-.popup .popup-greeks-header span,
-.popup .popup-chart-header span {
+.option-popup-prices-header span,
+.option-popup-greeks-header span,
+.option-popup-chart-header span {
 	font-size: 1rem;
 	color: var(--primary5);
 }
 
-.popup .close-popup-button {
+.close-option-popup-button {
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
@@ -576,39 +579,39 @@ body {
 	cursor: pointer;
 }
 
-.popup-prices {
+.option-popup-prices {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
 
-#popup-container .popup-prices > :nth-child(2n){
+#option-popup-container .option-popup-prices > :nth-child(2n){
 	padding-left: 1rem;
 	border-left: 0.5px solid grey;
 }
 
-#popup-container .popup-prices > :nth-child(1n){
+#option-popup-container .option-popup-prices > :nth-child(1n){
 	padding-right: 1rem;
 }
 
-.popup-greeks {
+.option-popup-greeks {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
 
-#popup-container .popup-greeks > :nth-child(2n){
+#option-popup-container .option-popup-greeks > :nth-child(2n){
 	padding-left: 1rem;
 	border-left: 0.5px solid grey;
 }
 
-#popup-container .popup-greeks > :nth-child(1n){
+#option-popup-container .option-popup-greeks > :nth-child(1n){
 	padding-right: 1rem;
 }
 
-.popup-chart {
+.option-popup-chart {
 	width: 100%;
 }
 
-.popup-chart-loading {
+.option-popup-chart-loading {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -619,6 +622,7 @@ body {
 
 /* Detail Styling */
 #detail {
+	position: relative;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	padding: 0.25rem;
@@ -628,11 +632,38 @@ body {
 	color: var(--primary1);
 }
 
+.detail-name,
+.detail-value {
+	height: 1rem;
+}
+
 .detail-name {
+	justify-self: start;
 }
 
 .detail-value {
 	justify-self: end;
+}
+
+.detail-info {
+	display: none;
+	position: absolute;
+	top: 1.5rem;
+	left: 0.25rem;
+	padding: 0.3rem 0.5rem;
+	margin-right: 0.5rem;
+	border-radius: 0.25rem;
+	background-color: var(--bg5);
+	text-align: justify;
+	text-justify: inter-character;
+	overflow: hidden;
+	z-index: 1500;
+}
+
+#detail .detail-name:hover ~ .detail-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* Error Styling */

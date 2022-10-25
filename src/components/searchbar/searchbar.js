@@ -42,7 +42,7 @@ const Searchbar = ({ changeTicker }) => {
     }, 500);
   }
 
-  async function searchbarIconClicked() {
+  const searchbarIconClicked = async () => {
     if (!showSearchbar) {
       await setShowSearchbar(!showSearchbar);
       searchbarRef.current.focus();

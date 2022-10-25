@@ -135,9 +135,12 @@ table {
 
 body {
 	position: relative;
-	min-width: 50rem;
 	background-color: var(--bg1);
 	overflow-x: hidden;
+}
+
+/* Root Element Styling */
+#root {
 }
 
 /* Header Container */
@@ -695,11 +698,39 @@ body {
 	text-align: center;
 }
 
+/* Animations */
+/* Styling to shake searchbar when input is not a ticker */
+.shake-searchbar {
+  animation: shake 0.5s;
+}
+
+@keyframes shake-searchbar {
+  0% { transform: translate(-4px) }
+  10% { transform: translate(1px) }
+  20% { transform: translate(4px) }
+  30% { transform: translate(-1px) }
+  40% { transform: translate(-5px) }
+  50% { transform: translate(0px) }
+  60% { transform: translate(5px) }
+  70% { transform: translate(-1px) }
+  80% { transform: translate(-4px) }
+  90% { transform: translate(2px) }
+  100% { transform: translate(-2px) }
+}
 
 
 /* @media (max-device-width:480px) {
 
 } */
+
+@media (max-width:480px) {
+
+	/* Body Styling */
+	body {
+		overflow-x: auto;
+	}
+
+}
 
 @media (max-width:820px) {
 
@@ -709,4 +740,24 @@ body {
 		visibility: hidden;
 	}
 
+}
+
+
+/* Styling to shake current row of divs when answer is not valid */
+.shake {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translate(-6px) }
+  10% { transform: translate(1px) }
+  20% { transform: translate(8px) }
+  30% { transform: translate(-2px) }
+  40% { transform: translate(8px) }
+  50% { transform: translate(0px) }
+  60% { transform: translate(8px) }
+  70% { transform: translate(-1px) }
+  80% { transform: translate(-8px) }
+  90% { transform: translate(0px) }
+  100% { transform: translate(6px) }
 }

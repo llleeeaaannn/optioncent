@@ -24,7 +24,7 @@ function App() {
   const [error, setError] = useState('');
   const [showError, setShowError] = useState(false);
   const [optionable, setOptionable] = useState(true);
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   const changeTicker = (newTicker) => {
     setTicker(newTicker);

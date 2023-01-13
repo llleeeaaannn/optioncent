@@ -1,6 +1,6 @@
-# Stockle
-> A Wordle-like game with over 500 weekly users which uses stock tickers instead of words.
-> You can find the it at [Stockle.org](https://www.stockle.org)
+# Optioncent
+> A React web application which displays stock option prices as a percentage of their underlying asset's value providing traders an objective and data focused perspecive on their investment strategies.
+> You can find it at ____________
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -14,45 +14,42 @@
 
 
 ## General Information
-- Stockle is a static, client-side only web application built on vanilla Javascript, HTML and CSS.
-- Stockle was built to function almost identically to the popular game Wordle.
-- Wordle is a web-based word game. Players have six attempts to guess a five-letter word, with feedback given for each guess in the form of colored tiles indicating when letters match or occupy the correct position. Wordle has a single daily solution, with all players attempting to guess the same word.
-- Stockle relies on the same concept but rather than using any five-letter word the potential answers are stock tickers of various lengths and the UI and game logic dynamically adjusts to the ticker length of the day.
-- The purpose of Stockle is to allow financial market participants and enthusiats to play a fun and mentally stimulating stock related game which also exposes them to new stocks and companies they were otherwise unaware of.
+- Optioncent is a responsive web application built on the React framework with Javascript, HTML and CSS.
+- Optioncent is a web-based word game. Players have six attempts to guess a five-letter word, with feedback given for each guess in the form of colored tiles indicating when letters match or occupy the correct position. Wordle has a single daily solution, with all players attempting to guess the same word.
+- Stockle relies on the Tradier API for its live option pricing data and custom calculations for determining the value of option contracts in relation to the value of their underlying assets.
+- The purpose of Optioncent is to provide financial market participants, particularly retail traders, with an objective perspective on the value of the financial derivatives they are trading. Rather than displaying live prices in dollars, the call and put prices are provided as a percentage of the value of basket of underlying assets that they represent. This prevents users from being deceived by arbitrarily high (or low) values and to instead view the value of these derivatives as a derivative of the stocks or funds they represent. 
+- We hope that alongside delivering our users with the data necessary to view option prices in relation to their underlying, Optioncent also imparts a change in perspective to our users allowing them to more critically evaluate their investment decisions.
 
 
 ## Technologies Used
 - Javascript
+- React
 - HTML
 - CSS
+- Chart.js
 - Webpack
 
 
 ## Features
-Stockle provides the following features:
-- A once daily 'Stockle' which is identical for all users who are offered 6 guesses to decipher the ticker.
-- A dynamic user interface and game logic which adapts the number of guess squares depending on the ticker of the day.
-- Dark and Light Mode alongside a High Contrast Mode for those with visual impairments.
-- Statistic tracking stored in the brower's local storage allowing tracking of their scores without necessitating a cumbersome login which could negatively influence user adoption.
+
 
 
 ## User Interface
-<img src="./img/stockle1.png" width="250"> <img src="./img/stockle2.png" width="250"> <img src="./img/stockle3.png" width="250"> 
+
 
 
 
 ## Usage
-The application is available at [Stockle.org](https://www.stockle.org).
+The application is available at 
 
 
 ## Room for Improvement
 To do:
-- Transform the application into an offline-first Progressive Web App as set out [here](https://web.dev/progressive-web-apps)
-- Add more in depth statisitcs tracking
+
 
 
 ## Acknowledgements
-Josh Wardle, creator of Worlde.
+Tradier
 
 
 ## Contact

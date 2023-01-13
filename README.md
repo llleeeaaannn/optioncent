@@ -1,4 +1,4 @@
-# Optioncent
+# Optioncent = USE TAILWIND CSS
 > A React web application which displays stock option prices as a percentage of their underlying asset's value providing traders an objective and data focused perspecive on their investment strategies.
 > You can find it at ____________
 

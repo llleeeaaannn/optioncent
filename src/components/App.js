@@ -24,7 +24,7 @@ function App() {
   const [error, setError] = useState('');
   const [showError, setShowError] = useState(false);
   const [optionable, setOptionable] = useState(true);
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(false);
 
   const changeTicker = (newTicker) => {
     setTicker(newTicker);
@@ -114,3 +114,5 @@ export default App;
 // Add green/red styling depending on daily change etc
 
 // Check if ticker is optionable upon it being searched (use Tradier Option Lookup)
+
+// Change all styling to Tailwind where possible

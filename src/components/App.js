@@ -2,9 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { darkTheme, lightTheme } from '../data/themes';
-import Title from './title/title';
-import Searchbar from './searchbar/searchbar';
-import SettingsContainer from './settings/settings-container';
+import Navbar from './navbar/navbar';
 import Expirybar from './expirybar/expirybar';
 import Chain from './chain/chain';
 import Overview from './chain/overview';
@@ -84,12 +82,8 @@ function App() {
         <Helmet>
           <style>{theme ? darkTheme : lightTheme}</style>
         </Helmet>
-        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme } }>
-          <div id="header-container">
-            <Searchbar changeTicker={changeTicker}/>
-            <Title />
-            <SettingsContainer />
-          </div>
+        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme, changeTicker } }>
+          <Navbar />
           { optionable &&
             <>
               <Expirybar changeExpiry={changeExpiry} />

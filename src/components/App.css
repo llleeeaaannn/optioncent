@@ -166,9 +166,8 @@ body {
 #header-container {
 	display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 90vw;
-	margin-left: 5vw;
-	margin-right: 5vw;
+	padding: 1rem 2rem;
+  width: 100%;
 }
 
 /* Title Container Styling */
@@ -177,12 +176,6 @@ body {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	height: 4rem;
-	padding: 1rem;
-}
-
-#title h1 {
-	font-size: 2.5rem;
 }
 
 /* Settings Container */
@@ -192,17 +185,19 @@ body {
 	justify-content: center;
 	align-items: center;
 	justify-self: end;
-	height: 4rem;
 }
 
+#searchbar-svg,
 #settings-svg,
 #theme-svg {
+	/* Replace height and width styling with tailwind */
 	height: 2rem;
 	width: 2rem;
 	cursor: pointer;
 }
 
 #settings-svg {
+	/* Replace margin styling with tailwind */
 	margin-left: 0.5rem;
 }
 
@@ -213,7 +208,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	justify-self: start;
-  height: 4rem;
 }
 
 #searchbar-inner-container {
@@ -223,21 +217,12 @@ body {
 	align-items: center;
 }
 
-.searchbar {
-
-}
-
-#searchbar-svg {
-	width: 2rem;
-	height: 2rem;
-	cursor: pointer;
-}
-
 .searchbar-form {
 	width: 100%;
 }
 
 .searchbar-form input {
+	/* Replace  */
   width: 10rem;
 	height: 2rem;
 	padding: 0.25rem 0.75rem;

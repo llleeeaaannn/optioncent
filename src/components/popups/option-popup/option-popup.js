@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { format } from 'date-fns';
 import OptionChart from './option-chart';
 import OptionDetail from './option-detail';
+import OptionChartLoading from './option-chart-loading';
 import { MainContext } from '../../App';
 import { ivInfo, deltaInfo, thetaInfo, gammaInfo, vegaInfo, rhoInfo } from '../../../data/variables';
 import { getPercent, getStrike, getIV, getFormattedDate, getDTE, getPreviousDate, addPlus, addPlusWithDollar } from '../../../methods/methods';
@@ -73,20 +74,20 @@ const OptionPopup = () => {
     fetchContractHistory();
   }, [contractTicker]);
 
+  const containerStyle = "fixed inset-0 grid place-content-center w-screen h-screen bg-slate-600/25 cursor-pointer z-30";
+  const popupStyle = "p-4 pt-2 rounded-lg bg-white cursor-auto";
+  const popupTitleStyle = "block grid place-content-center w-full text-xl text-slate-900";
+  const sectionTitleStyle = "block grid place-content-center w-full text-base text-slate-900 ";
+  const closePopupStyle = "absolute top-2 right-2 w-4 h-4 fill-slate-900 cursor-pointer"
+
+
   return (
     <>
       { contract &&
-        <div id="option-popup-container" onClick={hideOptionPopup}>
-          <div className="option-popup" onClick={(e) => e.stopPropagation()}>
-            <header className="option-popup-header">
-              <span>{ticker} {getStrike(contract.strike, contract.option_type)}</span>
-              <svg className="close-option-popup-button" onClick={hideOptionPopup} viewBox="0 0 16 16">
-                <path d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708L8 8.707z"/>
-              </svg>
-            </header>
-            <header className="option-popup-prices-header">
-              <span>Option Information</span>
-            </header>
+        <div id="option-popup-container" className={containerStyle} onClick={hideOptionPopup}>
+          <div id="option-popup" className={popupStyle} onClick={(e) => e.stopPropagation()}>
+            <h2 className={popupTitleStyle}>{ticker} {getStrike(contract.strike, contract.option_type)}</h2>
+            <h3 className={sectionTitleStyle}>Option Information</h3>
             <div className="option-popup-prices">
               <OptionDetail name='Price ($):' value={odGetDollarPrice(contract)} hover={false}/>
               <OptionDetail name='Price (%):' value={odGetPercentPrice(contract, price)} hover={false}/>
@@ -97,9 +98,7 @@ const OptionPopup = () => {
               <OptionDetail name='DTE:' value={odGetDTE(contract)} hover={false}/>
               <OptionDetail name='Expiry:' value={odGetFormattedDate(contract, 'P')} hover={false}/>
             </div>
-            <header className="option-popup-greeks-header">
-              <span>Greeks</span>
-            </header>
+            <h3 className={sectionTitleStyle}>Greeks</h3>
             <div className="option-popup-greeks">
               <OptionDetail name='IV:' value={odGetIV(contract)} hover={true} info={ivInfo}/>
               <OptionDetail name='Delta:' value={odGetDelta(contract)} hover={true} info={deltaInfo}/>
@@ -108,23 +107,12 @@ const OptionPopup = () => {
               <OptionDetail name='Vega:' value={odGetVega(contract)} hover={true} info={vegaInfo}/>
               <OptionDetail name='Rho:' value={odGetRho(contract)} hover={true} info={rhoInfo}/>
             </div>
-            <header className="option-popup-chart-header">
-              <span>Price History</span>
-            </header>
-            { !showChart &&
-              <div className="option-popup-chart-loading">
-                <svg width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                  <path fill="none" stroke="currentColor" strokeDasharray="15" strokeDashoffset="15" strokeLinecap="round" strokeWidth="2" d="M12 3C16.9706 3 21 7.02944 21 12">
-                    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/>
-                    <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/>
-                  </path>
-                </svg>
-              </div>
-            }
-            { showChart && chartData &&
-              <OptionChart chartData={chartData}/>
-            }
-
+            <h3 className={sectionTitleStyle}>Price History</h3>
+            { !showChart && OptionChartLoading }
+            { showChart && chartData && <OptionChart chartData={chartData}/> }
+            <svg className={closePopupStyle} onClick={hideOptionPopup} viewBox="0 0 16 16">
+              <path d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708L8 8.707z"/>
+            </svg>
           </div>
         </div>
       }

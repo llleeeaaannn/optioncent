@@ -28,8 +28,10 @@ const OptionChart = ({chartData}) => {
     }
   }
 
+  const optionChartStyle = "w-full";
+
   return (
-    <div className="option-popup-chart">
+    <div className={optionChartStyle}>
       <Line data={chartData} options={options} />
     </div>
   )

@@ -312,9 +312,6 @@ body {
 }
 
 /* Popup Styling */
-#option-popup-container {
-}
-
 #option-popup {
 	position: relative;
 	width: 50vw;
@@ -338,17 +335,12 @@ body {
 	padding-right: 1rem;
 }
 
-
 /* Detail Styling */
 #detail {
 	position: relative;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	padding: 0.25rem;
-}
-
-#detail span {
-	color: var(--primary1);
 }
 
 .detail-name,

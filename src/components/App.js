@@ -81,7 +81,7 @@ function App() {
         <Helmet>
           <style>{theme ? darkTheme : lightTheme}</style>
         </Helmet>
-        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme, changeTicker } }>
+        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme, changeTicker, hideOptionPopup } }>
           <Navbar />
           { optionable &&
             <>
@@ -110,3 +110,5 @@ export default App;
 // Change all styling to Tailwind where possible
 
 // Maybe make Navbar and Expiry bar sticky on scroll
+
+// Style option strikes that dont load

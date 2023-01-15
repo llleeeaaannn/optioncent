@@ -1,18 +1,19 @@
 import React from 'react';
-import { useState, useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { MainContext } from '../App';
-import { ChainContext } from './chain'
 import { getPercent, getMid } from '../../methods/methods'
 
 const Put = ({ optionContract, makePopup }) => {
 
-  const { options } = useContext(ChainContext);
   const { price } = useContext(MainContext);
+
+  const putStyle = "py-1 border-b border-solid border-slate-200 cursor-pointer";
+  const emptyPutStyle = "empty-option-container";
 
   return (
     <>
       { !optionContract &&
-        <div id="put-container" className="empty-option-container">
+        <div id="put-container" className={emptyPutStyle}>
           <span className="spread">-</span>
           <span className="bid">-</span>
           <span className="mid">-</span>
@@ -23,7 +24,7 @@ const Put = ({ optionContract, makePopup }) => {
         </div>
       }
       { optionContract &&
-        <div id="put-container" onClick={() => makePopup(optionContract.symbol)}>
+        <div id="put-container" className={putStyle} onClick={() => makePopup(optionContract.symbol)}>
           <span className="bid">{getPercent(optionContract.bid, price)}%</span>
           <span className="mid">{getPercent(getMid(optionContract.bid, optionContract.ask), price)}%</span>
           <span className="ask">{getPercent(optionContract.ask, price)}%</span>

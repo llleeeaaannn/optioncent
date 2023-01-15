@@ -3,14 +3,13 @@ import { format } from 'date-fns';
 import OptionChart from './option-chart';
 import OptionDetail from './option-detail';
 import { MainContext } from '../../App';
-import { myNewData } from "../../../data/optiondata";
 import { ivInfo, deltaInfo, thetaInfo, gammaInfo, vegaInfo, rhoInfo } from '../../../data/variables';
 import { getPercent, getStrike, getIV, getFormattedDate, getDTE, getPreviousDate, addPlus, addPlusWithDollar } from '../../../methods/methods';
 import { odGetDollarPrice, odGetPercentPrice, odGetDollarChange, odGetPercentChange, odGetVolume, odGetOI, odGetDTE, odGetFormattedDate, odGetIV, odGetTheta, odGetDelta, odGetGamma, odGetVega, odGetRho } from '../../../methods/option-detail-methods';
 
-const OptionPopup = ({ hidePopup }) => {
+const OptionPopup = () => {
 
-  const { ticker, price, contractTicker, makeError } = useContext(MainContext);
+  const { ticker, price, contractTicker, makeError, hideOptionPopup } = useContext(MainContext);
 
   const [contract, setContract] = useState();
   const [showChart, setShowChart] = useState(false);
@@ -77,11 +76,11 @@ const OptionPopup = ({ hidePopup }) => {
   return (
     <>
       { contract &&
-        <div id="option-popup-container" onClick={hidePopup}>
+        <div id="option-popup-container" onClick={hideOptionPopup}>
           <div className="option-popup" onClick={(e) => e.stopPropagation()}>
             <header className="option-popup-header">
               <span>{ticker} {getStrike(contract.strike, contract.option_type)}</span>
-              <svg className="close-option-popup-button" onClick={hidePopup} viewBox="0 0 16 16">
+              <svg className="close-option-popup-button" onClick={hideOptionPopup} viewBox="0 0 16 16">
                 <path d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708L8 8.707z"/>
               </svg>
             </header>

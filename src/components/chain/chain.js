@@ -86,20 +86,21 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     setStrikes(strikeArray);
   }, [options]);
 
+  const chainContainerStyle = "";
+  const chainStyle = "w-full px-6 pb-4";
+
   return (
-    <ChainContext.Provider value={ { options, strikes } }>
+    <ChainContext.Provider value={ { options, strikes, makePopup } }>
       { options &&
-        <>
+        <div id="chain-container" className={chainContainerStyle}>
           <Overview />
-          <div id="chain-container">
-            <div className="chain">
-              <LowChain makePopup={makePopup} />
-              <Band />
-              <HighChain makePopup={makePopup} />
-              <StrikesBorder />
-            </div>
+          <div id="chain" className={chainStyle}>
+            <LowChain />
+            <Band />
+            <HighChain />
+            <StrikesBorder />
           </div>
-        </>
+        </div>
       }
     </ChainContext.Provider>
   )

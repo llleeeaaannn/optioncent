@@ -5,7 +5,7 @@ const Overview = () => {
 
   const { ticker } = useContext(MainContext);
 
-  const overviewStyle = "py-2";
+  const overviewStyle = "py-2 mb-2";
 
   return (
     <div id="overview" className={overviewStyle}>

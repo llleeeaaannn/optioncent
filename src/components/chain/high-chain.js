@@ -3,10 +3,10 @@ import { useState, useEffect, useContext } from 'react';
 import { MainContext } from '../App';
 import { ChainContext } from './chain';
 
-const HighChain = ({ makePopup }) => {
+const HighChain = () => {
 
   const { price } = useContext(MainContext);
-  const { options, strikes } = useContext(ChainContext);
+  const { options, strikes, makePopup } = useContext(ChainContext);
 
   const [highStrikes, setHighStrikes] = useState();
 
@@ -36,11 +36,18 @@ const HighChain = ({ makePopup }) => {
     setHighStrikes(fetchOptionTickers());
   }, [strikes]);
 
+  const highChainStyle = "w-full last:border-none"
 
   return (
-    <div className="high-chain">
+    <div id="high-chain" className={highChainStyle}>
       { highStrikes &&
-        highStrikes.map((strike, i) => <Strike strikeObject={highStrikes[i]} makePopup={makePopup} key={i} />)
+        highStrikes.map((strike, i) =>
+          <Strike
+            strikeObject={highStrikes[i]}
+            makePopup={makePopup}
+            key={i}
+          />
+        )
       }
     </div>
   )

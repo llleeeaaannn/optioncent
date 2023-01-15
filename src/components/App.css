@@ -208,62 +208,42 @@ body {
 	flex-wrap: wrap;
 }
 
-/* Chain Header Styling */
+/* Overview Styling */
 #overview {
 	display: grid;
 	grid-template-columns: 1fr auto 1fr;
 	justify-items: center;
 }
 
-/* All Chain Styling */
-/* Chain ContainerStyling */
-#chain-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.chain {
+/* Chain Styling */
+#chain {
 	position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90vw;
 }
 
-
-
-.low-chain,
-.high-chain {
+#low-chain,
+#high-chain {
 	display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90vw;
 }
 
-.low-chain #call-container,
-.low-chain #put-container,
-.high-chain #call-container,
-.high-chain #put-container {
-	border-bottom: 0.25px solid var(--primary5);
-}
-
-.low-chain :last-child > #call-container,
-.low-chain :last-child > #put-container,
-.high-chain :last-child > #call-container,
-.high-chain :last-child > #put-container {
-	border-bottom: none;
+#low-chain :last-child > #call-container,
+#low-chain :last-child > #put-container,
+#high-chain :last-child > #call-container,
+#high-chain :last-child > #put-container {
+	border-bottom: none !important;
 }
 
 /* Option Strike Styling */
 #strike-container {
   display: grid;
   grid-template-columns: 10fr 2fr 10fr;
-  width: 90vw;
-	height: 1.5rem;
+	align-items: center;
 }
 
 #strike {
@@ -271,33 +251,18 @@ body {
   place-items: center;
 }
 
-#strike span {
-	color: var(--primary5);
-}
-
-/* Put & Call Price Styling */
+/* Put & Call Styling */
 #call-container,
 #put-container {
 	position: relative;
 	display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-	cursor: pointer;
 }
 
 #call-container.empty-option-container,
 #put-container.empty-option-container {
 	cursor: default;
-}
-
-#call-container span,
-#put-container span {
-	color: var(--primary1);
-}
-
-#call-container:hover span,
-#put-container:hover span {
-	color: var(--primary4);
 }
 
 #call-container .empty-option-popup,
@@ -307,7 +272,6 @@ body {
 	width: 100%;
 	height: 100%;
 	padding: 0.25rem;
-	background-color: var(--secondary4);
 	overflow: hidden;
 	white-space: nowrap;
 }
@@ -320,27 +284,10 @@ body {
 }
 
 /* Band Styling */
-#band-outer-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 92.5vw;
-	height: 2rem;
-	margin: 0.1rem;
-	border-radius: 0.3rem;
-	background-color: var(--bg4);
-	color: black;
-	z-index: 10;
-}
-
-#band-inner-container {
+#band {
   display: grid;
   grid-template-columns: 10fr 2fr 10fr;
-  width: 90vw;
-}
-
-#band-outer-container span {
-	color: var(--primary1);
+	width: 100.25%;
 }
 
 .band-call,
@@ -359,11 +306,9 @@ body {
 #strikes-border {
 	position: absolute;
 	left: 50%;
-	transform: translateX(-50%);
 	width: 6.5vw;
-	height: calc(100% + 0.5rem);
-	border-radius: 0.5rem;
-	background-color: var(--primaryOverlay1);
+	height: 100%;
+	transform: translateX(-50%);
 }
 
 /* Popup Styling */

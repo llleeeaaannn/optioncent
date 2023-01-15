@@ -5,7 +5,6 @@ import { darkTheme, lightTheme } from '../data/themes';
 import Navbar from './navbar/navbar';
 import Expirybar from './expirybar/expirybar';
 import Chain from './chain/chain';
-import Overview from './chain/overview';
 import OptionPopup from './popups/option-popup/option-popup';
 import ErrorAlert from './popups/error/erroralert';
 
@@ -87,7 +86,6 @@ function App() {
           { optionable &&
             <>
               <Expirybar changeExpiry={changeExpiry} />
-              <Overview />
               <Chain changeExpiry={changeExpiry} changeExpiryDates={changeExpiryDates} makePopup={makeOptionPopup} />
             </>
           }
@@ -110,3 +108,5 @@ export default App;
 // Check if ticker is optionable upon it being searched (use Tradier Option Lookup)
 
 // Change all styling to Tailwind where possible
+
+// Maybe make Navbar and Expiry bar sticky on scroll

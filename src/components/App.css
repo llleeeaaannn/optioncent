@@ -147,7 +147,6 @@ table {
 /* General Styling */
 * {
   box-sizing: border-box;
-	color: var(--primary5);
 }
 
 body {
@@ -166,7 +165,6 @@ body {
 #navbar {
 	display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 100%;
 }
 
 /* Title Container Styling */
@@ -186,15 +184,6 @@ body {
 	justify-self: end;
 }
 
-#searchbar-svg,
-#settings-svg,
-#theme-svg {
-	/* Replace height and width styling with tailwind */
-	height: 2rem;
-	width: 2rem;
-	cursor: pointer;
-}
-
 /* Searchbar Container */
 #searchbar-outer-container {
 	display: flex;
@@ -211,89 +200,19 @@ body {
 	align-items: center;
 }
 
-.searchbar-form {
-	width: 100%;
-}
-
-.searchbar-form input {
-	/* Replace  */
-	background-color: var(--bg3);
-	text-transform: uppercase;
-}
-
-.dropdown-container {
-  position: absolute;
-  background-color: var(--bg3);
-  overflow: hidden;
-	z-index: 1100;
-}
-
-.dropdown-container:empty {
-  display: none;
-}
-
 /* Expirybar Styling */
-#expirybar-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.expirybar {
+#expirybar {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	flex-wrap: wrap;
 }
 
-.expiry.active {
-	color: var(--bg3)
-}
-
-
-/* Expirybar Styling */
-#overview-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.overview {
-  display: grid;
-	grid-template-columns: repeat(3, 1fr);
-  width: 90vw;
-	height: 2rem;
-	padding-top: 0.5rem;
-	padding-bottom: 1rem;
-}
-
-.overview-dte {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-}
-
-.overview-ticker,
-.overview-calls,
-.overview-puts {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-.overview-expiry {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-}
-
-.overview span {
-	color: var(--primary1);
-	font-size: 1rem;
+/* Chain Header Styling */
+#overview {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	justify-items: center;
 }
 
 /* All Chain Styling */
@@ -303,8 +222,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  width: 100vw;
-  height: 75vh;
 }
 
 .chain {
@@ -316,23 +233,7 @@ body {
   width: 90vw;
 }
 
-.chain-header {
-	position: absolute;
-	top: -1.5rem;
-	display: grid;
-	grid-template-columns: 1fr 6.5vw 1fr;
-	justify-items: center;
-	width: 92.5vw;
-	height: 2rem;}
 
-.chain-header div {
-	width: 6.5vw;
-}
-
-.chain-header span {
-	color: var(--primary1);
-	font-size: 1rem;
-}
 
 .low-chain,
 .high-chain {

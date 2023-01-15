@@ -21,18 +21,23 @@ const Expirybar = ({ changeExpiry }) => {
     if (expiryDates) setActiveExpiry(expiryDates[0]);
   }, [expiryDates]);
 
+  const expiryBarStyle = "w-full py-1 border-b border-solid border-slate-200 bg-slate-100";
+
   return (
-    <div id="expirybar-container">
-      <ActiveExpiryContext.Provider value={activeExpiry}>
-        { expiryDates[0] &&
-          <div className="expirybar">
-            { expiryDates.map((date, i) =>
-              <Expiry changeExpiry={changeExpiry} changeActive={changeActive} date={date} key={i} value={getFormattedDate(date, "do LLL y")} />
-            )}
-          </div>
-        }
-      </ActiveExpiryContext.Provider>
-    </div>
+    <ActiveExpiryContext.Provider value={activeExpiry}>
+      { expiryDates[0] &&
+        <div id="expirybar" className={expiryBarStyle}>
+          { expiryDates.map((date, i) =>
+            <Expiry
+              changeExpiry={changeExpiry}
+              changeActive={changeActive}
+              date={date}
+              key={i}
+              value={getFormattedDate(date, "do LLL y")} />
+          )}
+        </div>
+      }
+    </ActiveExpiryContext.Provider>
   )
 }
 

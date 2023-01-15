@@ -55,26 +55,32 @@ const Searchbar = ({ changeTicker }) => {
     !clicked ? setSuggestions(getSuggestions()) : setClicked(false);
   }, [value]);
 
+  const svgStyle = "w-8 h-8 fill-slate-900 cursor-pointer";
+  const searchbarStyle = "w-24 h-8 rounded-md pl-2 bg-slate-200 uppercase";
+  const shakeSearchbarStyle = `shake-searchbar ${searchbarStyle}`;
+  const searchbarInnerStyle = "gap-2";
+  const dropdownStyle = "absolute w-24 max-h-40 mt-1 rounded-md overflow-hidden z-10 bg-slate-200 empty:hidden"
+
   return (
     <div id="searchbar-outer-container">
-      <div id="searchbar-inner-container">
-        <svg id="searchbar-svg" onClick={searchbarIconClicked} viewBox="0 0 24 24">
-          <path fill="currentColor" d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396l1.414-1.414l-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8s3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6s-6-2.691-6-6s2.691-6 6-6z"/>
+      <div id="searchbar-inner-container" className={searchbarInnerStyle}>
+        <svg className={svgStyle} onClick={searchbarIconClicked} viewBox="0 0 24 24">
+          <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396l1.414-1.414l-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8s3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6s-6-2.691-6-6s2.691-6 6-6z"/>
         </svg>
         { showSearchbar &&
-          <div className="searchbar">
-            <form className="searchbar-form" onSubmit={searchbarSubmit}>
+          <div>
+            <form onSubmit={searchbarSubmit}>
               <input
                 type="text"
                 value={value}
-                className={shakeSearchbar ? 'shake-searchbar searchbar-input' : 'searchbar-input'}
+                className={shakeSearchbar ? shakeSearchbarStyle : searchbarStyle }
                 ref={searchbarRef}
                 onChange={(e) => {
                   setValue(e.target.value);
                 }}
               />
             </form>
-            <div className="dropdown-container">
+            <div className={dropdownStyle}>
               { suggestions.map((suggestion, i) => <Dropdown suggestion={suggestion} key={i} suggestionClicked={suggestionClicked}/>) }
             </div>
           </div>

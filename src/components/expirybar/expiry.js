@@ -10,8 +10,13 @@ const Expiry = ({ date, value, changeExpiry, changeActive }) => {
     changeExpiry(date);
   }
 
+  const expiryStyle = "py-1 px-2 m-0.5 rounded text-slate-900 cursor-pointer hover:bg-blue-400";
+  const expiryActiveStyle = `${expiryStyle} bg-blue-900 hover:bg-blue-700 text-slate-100`;
+
   return (
-    <span onClick={() => selected(date)} className={active === date ? 'active expiry': 'expiry'}>{ value }</span>
+    <span onClick={() => selected(date)} className={ active === date ? expiryActiveStyle : expiryStyle }>
+      { value }
+    </span>
   )
 }
 

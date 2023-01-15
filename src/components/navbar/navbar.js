@@ -8,8 +8,10 @@ const Navbar = () => {
 
   const { changeTicker } = useContext(MainContext);
 
+  const navStyle = "w-full px-6 py-4 border-b border-solid border-slate-200"
+
   return (
-    <div id="navbar" className="px-6 py-6">
+    <div id="navbar" className={navStyle}>
       <Searchbar changeTicker={changeTicker}/>
       <Title />
       <SettingsContainer />

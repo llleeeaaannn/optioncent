@@ -4,8 +4,10 @@ import ThemeIcon from './theme-icon';
 
 const SettingsContainer = () => {
 
+  const settingsStyle = "gap-2"
+
   return (
-    <div id="settings-container">
+    <div className={settingsStyle} id="settings-container">
       <ThemeIcon />
       <SettingsIcon />
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import Band from './band';
 import LowChain from './low-chain';
 import HighChain from './high-chain';
-import ChainHeader from './chain-header';
+import Overview from './overview';
 import StrikesBorder from './strikes-border';
 import { useState, useContext, useEffect } from 'react';
 import { MainContext } from '../App'
@@ -88,17 +88,19 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
 
   return (
     <ChainContext.Provider value={ { options, strikes } }>
-      <div id="chain-container">
-        { options &&
-          <div className="chain">
-            <ChainHeader />
-            <LowChain makePopup={makePopup} />
-            <Band />
-            <HighChain makePopup={makePopup} />
-            <StrikesBorder />
+      { options &&
+        <>
+          <Overview />
+          <div id="chain-container">
+            <div className="chain">
+              <LowChain makePopup={makePopup} />
+              <Band />
+              <HighChain makePopup={makePopup} />
+              <StrikesBorder />
+            </div>
           </div>
-        }
-      </div>
+        </>
+      }
     </ChainContext.Provider>
   )
 }

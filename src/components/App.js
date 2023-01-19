@@ -112,3 +112,7 @@ export default App;
 // Maybe make Navbar and Expiry bar sticky on scroll
 
 // Style option strikes that dont load
+
+// Option popup cannot be scrolled if too tall for viewport (FIX)
+
+// Settings button does nothing

@@ -75,7 +75,7 @@ const OptionPopup = () => {
   }, [contractTicker]);
 
   const containerStyle = "fixed inset-0 grid place-content-center w-screen h-screen bg-slate-600/25 cursor-pointer z-30";
-  const popupStyle = "p-4 pt-2 rounded-lg bg-white cursor-auto";
+  const popupStyle = "p-4 pt-2 rounded-lg bg-white shadow-custom1 cursor-auto";
   const popupTitleStyle = "block grid place-content-center w-full text-xl text-slate-900 font-bold";
   const sectionTitleStyle = "block grid place-content-center w-full mb-1 text-base text-slate-900 font-bold";
   const detailSection = "mb-4"

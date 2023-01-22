@@ -116,3 +116,5 @@ export default App;
 // Option popup cannot be scrolled if too tall for viewport (FIX)
 
 // Settings button does nothing
+
+// Add a dark/light state which changes on click and has a useEffect on it ot add dark to html tag

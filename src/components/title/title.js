@@ -1,6 +1,6 @@
 const Title = () => {
 
-  const titleStyle = "text-4xl text-slate-900 font-bold font-serif"
+  const titleStyle = "font-GTUltraFine text-4xl text-slate-900 font-bold font-serif"
 
   return (
     <div id="title" className={titleStyle}>

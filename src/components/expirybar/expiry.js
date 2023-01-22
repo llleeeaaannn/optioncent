@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { ActiveExpiryContext } from './expirybar';
 
 const Expiry = ({ date, value, changeExpiry, changeActive }) => {
@@ -10,7 +10,7 @@ const Expiry = ({ date, value, changeExpiry, changeActive }) => {
     changeExpiry(date);
   }
 
-  const expiryStyle = "py-1 px-2 m-0.5 rounded text-slate-900 cursor-pointer hover:bg-blue-400";
+  const expiryStyle = "py-1 px-2 m-0.5 rounded font-Montserrat text-slate-900 cursor-pointer hover:bg-blue-400";
   const expiryActiveStyle = `${expiryStyle} bg-blue-900 hover:bg-blue-700 text-slate-100`;
 
   return (

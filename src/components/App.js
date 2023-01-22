@@ -101,19 +101,9 @@ export default App;
 
 // Comment all functions
 
-// Add hover to popup detail values to give exact values and definition if word is hovered
-
-// Add green/red styling depending on daily change etc
-
-// Check if ticker is optionable upon it being searched (use Tradier Option Lookup)
-
-// Change all styling to Tailwind where possible
-
 // Maybe make Navbar and Expiry bar sticky on scroll
 
 // Style option strikes that dont load
-
-// Option popup cannot be scrolled if too tall for viewport (FIX)
 
 // Settings button does nothing
 

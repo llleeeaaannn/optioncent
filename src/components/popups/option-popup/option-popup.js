@@ -46,14 +46,17 @@ const OptionPopup = () => {
       } else if (!(response.history.day instanceof Array)) {
         setShowChart(false);
       } else {
+        console.log(response.history);
         let history = response.history.day;
+        let firstDay = history[0].open;
+        let lastDay = history[history.length - 1].open;
         setChartData({
           labels: history.map((priceHistory) => getFormattedDate(priceHistory.date, 'LLL do')),
           datasets: [
             {
               label: 'PriceHistory',
               data: history.map((priceHistory) => priceHistory.open),
-              borderColor: 'purple',
+              borderColor: firstDay > lastDay ? 'red' : 'green',
               pointBorderColor: 'rgba(0, 0, 0, 0)',
               pointBackgroundColor: 'rgba(0, 0, 0, 0)',
               tension: 0.25,

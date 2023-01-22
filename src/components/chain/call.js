@@ -7,18 +7,18 @@ const Call = ({ optionContract, makePopup }) => {
 
   const { price } = useContext(MainContext);
 
-  const callStyle = "py-1 border-b border-solid border-slate-200 cursor-pointer text-slate-900 hover:text-slate-500";
+  const callStyle = "py-1 border-b border-solid border-slate-200 cursor-pointer text-slate-900 hover:text-blue-700";
   const emptyCallStyle = "empty-option-container";
-  const callSpanStyle = "";
+  const callTextStyle = "";
 
   return (
     <>
       { !optionContract &&
         <div id="call-container" className={emptyCallStyle}>
-          <span className={callSpanStyle}>-</span>
-          <span className={callSpanStyle}>-</span>
-          <span className={callSpanStyle}>-</span>
-          <span className={callSpanStyle}>-</span>
+          <span className={callTextStyle}>-</span>
+          <span className={callTextStyle}>-</span>
+          <span className={callTextStyle}>-</span>
+          <span className={callTextStyle}>-</span>
           <div className="empty-option-popup">
             <span>There is no option data available for this contract</span>
           </div>
@@ -26,16 +26,16 @@ const Call = ({ optionContract, makePopup }) => {
       }
       { optionContract &&
         <div id="call-container" className={callStyle} onClick={() => makePopup(optionContract.symbol)}>
-          <span className={callSpanStyle}>
+          <span className={callTextStyle}>
             {getPercent(optionContract.ask - optionContract.bid, price)}%
           </span>
-          <span className={callSpanStyle}>
+          <span className={callTextStyle}>
             {getPercent(optionContract.bid, price)}%
           </span>
-          <span className={callSpanStyle}>
+          <span className={callTextStyle}>
             {getPercent(getMid(optionContract.bid, optionContract.ask), price)}%
           </span>
-          <span className={callSpanStyle}>
+          <span className={callTextStyle}>
             {getPercent(optionContract.ask, price)}%
           </span>
         </div>

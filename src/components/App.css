@@ -127,6 +127,11 @@ table {
 	--fs-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
 }
 
+/* Tailwind Colours
+Background: stone-100
+Shadow: slate-600/25 */
+
+
 /* Fonts */
 @font-face {
   font-family: 'Futura Headline';
@@ -151,7 +156,7 @@ table {
 
 body {
 	position: relative;
-	background-color: var(--bg1);
+	/* background-color: var(--bg1); */
 	font-size: var(--fs-base);
 	font-size: 1rem;
 	overflow-x: hidden;
@@ -356,69 +361,6 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-/* Error Styling */
-#error-container {
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	width: 100vw;
-	height: 100vh;
-	background-color: var(--primaryOverlay3);
-	cursor: pointer;
-	z-index: 100;
-}
-
-.error {
-	position: relative;
-	width: 40vw;
-	min-width: 20rem;
-	padding: 1rem;
-	padding-top: 0.5rem;
-	border-radius: 0.5rem;
-	background-color: var(--bg1);
-	box-shadow: 0rem 0rem 1rem 0.5rem var(--secondaryOverlay4);
-	cursor: auto;
-}
-
-.error header {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 100%;
-	margin-bottom: 0.5rem;
-	color: var(--primary1);
-}
-
-.error header span {
-	color: var(--primary1);
-	font-size: 1.25rem;
-}
-
-.close-error-button {
-	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
-	width: 1rem;
-	height: 1rem;
-	fill: var(--primary1);
-	cursor: pointer;
-}
-
-.error-message {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-}
-
-.error-message span {
-	text-align: center;
 }
 
 /* Animations */

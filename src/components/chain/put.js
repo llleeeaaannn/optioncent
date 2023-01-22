@@ -7,17 +7,18 @@ const Put = ({ optionContract, makePopup }) => {
 
   const { price } = useContext(MainContext);
 
-  const putStyle = "py-1 border-b border-solid border-slate-200 cursor-pointer";
+  const putStyle = "py-1 border-b border-solid border-slate-200 cursor-pointer  text-slate-900 hover:text-blue-700";
   const emptyPutStyle = "empty-option-container";
+  const putTextStyle = "";
 
   return (
     <>
       { !optionContract &&
         <div id="put-container" className={emptyPutStyle}>
-          <span className="spread">-</span>
-          <span className="bid">-</span>
-          <span className="mid">-</span>
-          <span className="ask">-</span>
+          <span className={putTextStyle}>-</span>
+          <span className={putTextStyle}>-</span>
+          <span className={putTextStyle}>-</span>
+          <span className={putTextStyle}>-</span>
           <div className="empty-option-popup">
             <span>There is no option data available for this contract</span>
           </div>
@@ -25,10 +26,10 @@ const Put = ({ optionContract, makePopup }) => {
       }
       { optionContract &&
         <div id="put-container" className={putStyle} onClick={() => makePopup(optionContract.symbol)}>
-          <span className="bid">{getPercent(optionContract.bid, price)}%</span>
-          <span className="mid">{getPercent(getMid(optionContract.bid, optionContract.ask), price)}%</span>
-          <span className="ask">{getPercent(optionContract.ask, price)}%</span>
-          <span className="spread">{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
+          <span className={putTextStyle}>{getPercent(optionContract.bid, price)}%</span>
+          <span className={putTextStyle}>{getPercent(getMid(optionContract.bid, optionContract.ask), price)}%</span>
+          <span className={putTextStyle}>{getPercent(optionContract.ask, price)}%</span>
+          <span className={putTextStyle}>{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
         </div>
       }
     </>

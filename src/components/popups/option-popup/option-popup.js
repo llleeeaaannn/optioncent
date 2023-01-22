@@ -76,10 +76,10 @@ const OptionPopup = () => {
 
   const containerStyle = "fixed inset-0 grid place-content-center w-screen h-screen bg-slate-600/25 cursor-pointer z-30";
   const popupStyle = "p-4 pt-2 rounded-lg bg-white cursor-auto";
-  const popupTitleStyle = "block grid place-content-center w-full text-xl text-slate-900";
-  const sectionTitleStyle = "block grid place-content-center w-full mt-4 mb-1 text-base text-slate-900 ";
-  const closePopupStyle = "absolute top-2 right-2 w-4 h-4 fill-slate-900 cursor-pointer"
-
+  const popupTitleStyle = "block grid place-content-center w-full text-xl text-slate-900 font-bold";
+  const sectionTitleStyle = "block grid place-content-center w-full mb-1 text-base text-slate-900 font-bold";
+  const detailSection = "mb-4"
+  const closePopupStyle = "absolute top-3 right-3 w-4 h-4 fill-slate-900 cursor-pointer"
 
   return (
     <>
@@ -88,7 +88,7 @@ const OptionPopup = () => {
           <div id="option-popup" className={popupStyle} onClick={(e) => e.stopPropagation()}>
             <h2 className={popupTitleStyle}>{ticker} {getStrike(contract.strike, contract.option_type)}</h2>
             <h3 className={sectionTitleStyle}>Option Information</h3>
-            <div className="option-popup-prices">
+            <div id="option-popup-prices" className={detailSection}>
               <OptionDetail name='Price ($):' value={odGetDollarPrice(contract)} hover={false}/>
               <OptionDetail name='Price (%):' value={odGetPercentPrice(contract, price)} hover={false}/>
               <OptionDetail name='Daily Change:' value={odGetDollarChange(contract)} hover={false} />
@@ -99,7 +99,7 @@ const OptionPopup = () => {
               <OptionDetail name='Expiry:' value={odGetFormattedDate(contract, 'P')} hover={false}/>
             </div>
             <h3 className={sectionTitleStyle}>Greeks</h3>
-            <div className="option-popup-greeks">
+            <div id="option-popup-greeks" className={detailSection}>
               <OptionDetail name='IV:' value={odGetIV(contract)} hover={true} info={ivInfo}/>
               <OptionDetail name='Delta:' value={odGetDelta(contract)} hover={true} info={deltaInfo}/>
               <OptionDetail name='Theta:' value={odGetTheta(contract)} hover={true} info={thetaInfo}/>
@@ -108,7 +108,7 @@ const OptionPopup = () => {
               <OptionDetail name='Rho:' value={odGetRho(contract)} hover={true} info={rhoInfo}/>
             </div>
             <h3 className={sectionTitleStyle}>Price History</h3>
-            { !showChart && OptionChartLoading }
+            { !showChart && <OptionChartLoading /> }
             { showChart && chartData && <OptionChart chartData={chartData}/> }
             <svg className={closePopupStyle} onClick={hideOptionPopup} viewBox="0 0 16 16">
               <path d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708L8 8.707z"/>

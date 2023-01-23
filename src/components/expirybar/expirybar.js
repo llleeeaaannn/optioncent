@@ -21,7 +21,7 @@ const Expirybar = ({ changeExpiry }) => {
     if (expiryDates) setActiveExpiry(expiryDates[0]);
   }, [expiryDates]);
 
-  const expiryBarStyle = "w-full py-2 px-4 border-b border-solid border-slate-200 bg-slate-100";
+  const expiryBarStyle = "w-full py-2 px-4 border-b border-solid border-neutral-600 bg-neutral-800";
 
   return (
     <ActiveExpiryContext.Provider value={activeExpiry}>

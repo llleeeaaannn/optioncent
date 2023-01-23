@@ -49,6 +49,8 @@ table {
 
 /* Root Styling */
 :root {
+	/* Colors */
+	--tw-neutral-900: rgba(23, 23, 23, 1);
 	/* Font Styling */
 	--fs-xxs: clamp(0.51rem, -0.02vw + 0.52rem, 0.5rem);
 	--fs-xs: clamp(0.64rem, 0.05vw + 0.7rem, 0.75rem);
@@ -112,6 +114,10 @@ AltColors: blue-900
 * {
 	font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
+}
+
+html {
+	background-color: var(--tw-neutral-900);
 }
 
 body {

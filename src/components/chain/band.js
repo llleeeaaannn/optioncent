@@ -6,7 +6,7 @@ const Band = () => {
 
   const { price } = useContext(MainContext);
 
-  const bandStyling = "py-2 m-1 rounded-md text-slate-900 bg-slate-300 z-10";
+  const bandStyling = "py-2 m-1 rounded-md text-neutral-900 bg-neutral-100 z-10";
   const priceStyling = "grid place-items-center font-MontserratBold"
 
   return (

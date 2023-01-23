@@ -6,7 +6,7 @@ const ThemeIcon = () => {
   const { theme, setTheme } = useContext(MainContext);
 
   const containerStyle = "flex flex-row justify-end items-center";
-  const svgStyle = "w-8 h-8 fill-slate-900 cursor-pointer";
+  const svgStyle = "hidden w-8 h-8 fill-neutral-100 hover:fill-neutral-400 transition-all cursor-pointer";
 
   return (
     <div className={containerStyle}>

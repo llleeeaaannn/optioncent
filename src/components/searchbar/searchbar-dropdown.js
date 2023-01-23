@@ -1,6 +1,6 @@
 const Dropdown = ({suggestion, suggestionClicked}) => {
 
-  const dropdownStyle = "pl-2 p-1 text-base hover:cursor-pointer hover:bg-slate-300";
+  const dropdownStyle = "pl-2 p-1 text-base text-neutral-900 hover:cursor-pointer hover:bg-neutral-300 transition-all";
 
   return (
     <div className={dropdownStyle} onClick={() => suggestionClicked(suggestion)}>

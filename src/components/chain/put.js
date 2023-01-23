@@ -7,7 +7,7 @@ const Put = ({ optionContract, makePopup }) => {
 
   const { price } = useContext(MainContext);
 
-  const putStyle = "py-1 border-b border-solid border-slate-200 cursor-pointer  text-slate-900 hover:text-blue-700";
+  const putStyle = "py-1 border-b border-solid border-neutral-700 cursor-pointer text-neutral-300 hover:text-neutral-500";
   const emptyPutStyle = "empty-option-container";
   const putTextStyle = "";
 

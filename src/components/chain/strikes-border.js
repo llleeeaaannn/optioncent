@@ -1,6 +1,6 @@
 const StrikesBorder = () => {
 
-  const strikesBorderStyle = "rounded-md bg-slate-900/5";
+  const strikesBorderStyle = "rounded-md bg-neutral-100/10";
 
   return (
     <div id="strikes-border" className={strikesBorderStyle}></div>

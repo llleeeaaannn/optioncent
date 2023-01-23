@@ -55,11 +55,11 @@ const Searchbar = ({ changeTicker }) => {
     !clicked ? setSuggestions(getSuggestions()) : setClicked(false);
   }, [value]);
 
-  const svgStyle = "w-8 h-8 fill-slate-900 cursor-pointer";
-  const searchbarStyle = "w-24 h-8 rounded-md pl-2 bg-slate-200 uppercase";
+  const svgStyle = "w-8 h-8 fill-neutral-100 hover:fill-neutral-400 transition-all cursor-pointer";
+  const searchbarStyle = "w-24 h-8 rounded-md pl-2 bg-neutral-100 outline-0 uppercase";
   const shakeSearchbarStyle = `shake-searchbar ${searchbarStyle}`;
   const searchbarInnerStyle = "gap-2";
-  const dropdownStyle = "absolute w-24 max-h-40 mt-1 rounded-md overflow-hidden z-10 bg-slate-200 empty:hidden"
+  const dropdownStyle = "absolute w-24 max-h-40 mt-1 rounded-md overflow-hidden z-10 bg-neutral-100 empty:hidden"
 
   return (
     <div id="searchbar-outer-container">

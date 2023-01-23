@@ -4,7 +4,7 @@ import Put from './put';
 const Strike = ({ strikeObject, makePopup }) => {
 
   const strikeContainerStyle = "w-full";
-  const strikeStyle = "text-slate-900";
+  const strikeStyle = "text-neutral-300";
 
   return (
     <div id="strike-container" className={strikeContainerStyle}>

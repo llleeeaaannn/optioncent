@@ -77,12 +77,12 @@ const OptionPopup = () => {
     fetchContractHistory();
   }, [contractTicker]);
 
-  const containerStyle = "fixed inset-0 grid place-content-center w-screen h-screen bg-slate-600/25 cursor-pointer z-30";
-  const popupStyle = "p-4 pt-2 rounded-lg bg-white shadow-custom1 cursor-auto";
-  const popupTitleStyle = "block grid place-content-center w-full font-MontserratBold text-xl text-slate-900 font-bold";
-  const sectionTitleStyle = "block grid place-content-center w-full mb-1 font-Montserrat text-base text-slate-900 font-bold";
+  const containerStyle = "fixed inset-0 grid place-content-center w-screen h-screen bg-neutral-900/50 cursor-pointer z-30";
+  const popupStyle = "p-4 pt-2 rounded-lg bg-neutral-100 shadow-custom1 cursor-auto";
+  const popupTitleStyle = "block grid place-content-center w-full font-MontserratBold text-xl text-neutral-900 font-bold";
+  const sectionTitleStyle = "block grid place-content-center w-full mb-1 font-Montserrat text-base text-neutral-900 font-bold";
   const detailSection = "mb-4"
-  const closePopupStyle = "absolute top-3 right-3 w-4 h-4 fill-slate-900 cursor-pointer"
+  const closePopupStyle = "absolute top-3 right-3 w-4 h-4 fill-neutral-900 cursor-pointer transition-all hover:scale-110"
 
   return (
     <>

@@ -86,8 +86,8 @@ const Chain = ({ changeExpiry, changeExpiryDates, makePopup }) => {
     setStrikes(strikeArray);
   }, [options]);
 
-  const chainContainerStyle = "";
-  const chainStyle = "w-full px-6 pb-4";
+  const chainContainerStyle = "bg-neutral-900";
+  const chainStyle = "w-full px-6 pb-4 bg-neutral-900";
 
   return (
     <ChainContext.Provider value={ { options, strikes, makePopup } }>

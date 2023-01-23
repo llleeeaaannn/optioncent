@@ -1,10 +1,10 @@
 const OptionDetail = ({ name, value, hover, info }) => {
 
-  const detailStyle = "relative gap-1 p-1";
+  const detailStyle = "relative gap-1 p-1 text-neutral-900";
   const detailNameStyle = "justify-self-start";
   const detailNameHoverStyle = "justify-self-start cursor-pointer";
   const detailValueStyle = "justify-self-end";
-  const detailInfoStyle = "absolute top-6 left-1 py-1 px-2 mr-2 rounded bg-slate-300"
+  const detailInfoStyle = "absolute top-6 left-1 py-1 px-2 mr-2 rounded bg-neutral-300"
 
   return (
     <div id="detail" className={detailStyle}>

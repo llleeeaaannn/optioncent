@@ -1,12 +1,12 @@
-import './App.css';
+import '../App.css';
 import React, { useState, useEffect } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { darkTheme, lightTheme } from '../data/themes';
+import Chain from './chain/chain';
 import Navbar from './navbar/navbar';
 import Expirybar from './expirybar/expirybar';
-import Chain from './chain/chain';
-import OptionPopup from './popups/option-popup/option-popup';
 import ErrorAlert from './popups/error/erroralert';
+import OptionPopup from './popups/option-popup/option-popup';
 
 export const MainContext = React.createContext();
 

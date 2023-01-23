@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Title from '../title/title';
 import Searchbar from '../searchbar/searchbar';
-import SettingsContainer from '../settings/settings-container';
+import ThemeIcon from '../settings/theme-icon';
 import { MainContext } from '../App.js';
 
 const Navbar = () => {
@@ -14,7 +14,7 @@ const Navbar = () => {
     <div id="navbar" className={navStyle}>
       <Searchbar changeTicker={changeTicker}/>
       <Title />
-      <SettingsContainer />
+      <ThemeIcon />
     </div>
   )
 }

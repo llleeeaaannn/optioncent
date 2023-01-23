@@ -70,7 +70,7 @@ AltColors: blue-900
 /* Fonts */
 @font-face {
   font-family: 'GT Ultra Fine';
-  src: url('../fonts/GTUltraFine-Ultra.woff') format('woff');
+  src: url('./fonts/GTUltraFine-Ultra.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -78,7 +78,7 @@ AltColors: blue-900
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Regular.woff') format('woff');
+  src: url('./fonts/Montserrat-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -86,7 +86,7 @@ AltColors: blue-900
 
 @font-face {
   font-family: 'Montserrat Bold';
-  src: url('../fonts/Montserrat-Bold.woff') format('woff');
+  src: url('./fonts/Montserrat-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -94,7 +94,7 @@ AltColors: blue-900
 
 @font-face {
   font-family: 'Montserrat Light';
-  src: url('../fonts/Montserrat-Light.woff') format('woff');
+  src: url('./fonts/Montserrat-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -102,7 +102,7 @@ AltColors: blue-900
 
 @font-face {
   font-family: 'Montserrat Black';
-  src: url('../fonts/Montserrat-Black.woff') format('woff');
+  src: url('./fonts/Montserrat-Black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -135,13 +135,10 @@ body {
 	align-items: center;
 }
 
-/* Settings Container */
-#settings-container {
+#theme {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	justify-self: end;
+	align-items: flex-end;
+	justify-content: flex-end;
 }
 
 /* Searchbar Container */

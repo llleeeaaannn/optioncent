@@ -134,13 +134,6 @@ body {
 }
 
 /* Title Container Styling */
-#title {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-}
-
 #theme {
 	display: flex;
 	align-items: flex-end;
@@ -315,6 +308,12 @@ body {
 	align-items: center;
 }
 
+/* Error Styling */
+#error {
+	max-width: 80%;
+	text-align: center;
+}
+
 /* Media Queries (Keep values in line with Tailwind) */
 @media (max-width: 768px) {
 
@@ -363,6 +362,11 @@ body {
 		max-width: 95vw;
 		margin: 1rem;
 		overflow-y: auto;
+	}
+
+	/* Error Styling */
+	#error {
+		max-width: 95%;
 	}
 
 }

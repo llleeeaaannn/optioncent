@@ -14,7 +14,7 @@ const ErrorAlert = ({ hideError }) => {
 
   return (
     <div className={containerStyle} onClick={hideError}>
-      <div className={errorStyle} onClick={(e) => e.stopPropagation()}>
+      <div className={errorStyle} id="error" onClick={(e) => e.stopPropagation()}>
         <h2 className={errorTitleStyle}>Error</h2>
         <span className={errorTextStyle}>{ error }</span>
         <svg className={errorCloseStyle} onClick={hideError} viewBox="0 0 16 16">

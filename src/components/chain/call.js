@@ -7,7 +7,7 @@ const Call = ({ optionContract, makePopup }) => {
 
   const { price } = useContext(MainContext);
 
-  const callStyle = "py-1 border-b border-solid border-neutral-700 cursor-pointer text-neutral-300 hover:text-neutral-500";
+  const callStyle = "py-1 border-b border-solid border-neutral-700 cursor-pointer text-neutral-300 hover:font-MontserratBold";
   const emptyCallStyle = "empty-option-container";
   const callTextStyle = "md:text-xs";
   const callSpreadStyle = `${callTextStyle} md:hidden`

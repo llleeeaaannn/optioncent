@@ -1,13 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { tickers } from '../../data/tickers'
 import Dropdown from './searchbar-dropdown';
+import { MainContext } from '../App'
 
 const Searchbar = ({ changeTicker }) => {
+
+  const { showSearchbar, setShowSearchbar } = useContext(MainContext);
 
   const [value, setValue] = useState('');
   const [clicked, setClicked] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
-  const [showSearchbar, setShowSearchbar] = useState(false);
+  // const [showSearchbar, setShowSearchbar] = useState(false);
   const [shakeSearchbar, setShakeSearchbar] = useState(false);
 
   const searchbarRef = useRef();
@@ -55,7 +58,7 @@ const Searchbar = ({ changeTicker }) => {
     !clicked ? setSuggestions(getSuggestions()) : setClicked(false);
   }, [value]);
 
-  const svgStyle = "w-8 h-8 fill-neutral-100 hover:fill-neutral-400 transition-all cursor-pointer";
+  const svgStyle = "w-8 h-8 fill-neutral-100 hover:fill-neutral-400 transition-all cursor-pointer md:w-10 md:h-10";
   const searchbarStyle = "w-24 h-8 rounded-md pl-2 bg-neutral-100 outline-0 uppercase";
   const shakeSearchbarStyle = `shake-searchbar ${searchbarStyle}`;
   const searchbarInnerStyle = "gap-2";

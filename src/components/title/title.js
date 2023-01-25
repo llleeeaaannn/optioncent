@@ -1,10 +1,16 @@
+import { useContext } from 'react';
+import { MainContext } from '../App';
+
 const Title = () => {
 
-  const titleStyle = "font-GTUltraFine text-4xl text-blue-900 md:text-red-900"
+  const { showSearchbar } = useContext(MainContext);
+
+
+  const titleStyle = "grid place-items-center font-GTUltraFine text-4xl md:text-3xl text-neutral-100"
   const titleSearchbarShownStyle = `${titleStyle} md:hidden`
 
   return (
-    <div id="title" className={titleStyle}>
+    <div id="title" className={showSearchbar ? titleSearchbarShownStyle : titleStyle}>
       <h1>OPTIONCENT</h1>
     </div>
   )

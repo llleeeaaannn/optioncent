@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const { changeTicker } = useContext(MainContext);
 
-  const navStyle = "w-full px-6 py-4 border-b border-solid border-neutral-600 bg-neutral-900"
+  const navStyle = "w-full px-6 py-4 md:p-3 border-b border-solid border-neutral-600 bg-neutral-900"
 
   return (
     <div id="navbar" className={navStyle}>

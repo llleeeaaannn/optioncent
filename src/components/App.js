@@ -22,6 +22,7 @@ function App() {
   const [showError, setShowError] = useState(false);
   const [optionable, setOptionable] = useState(true);
   const [theme, setTheme] = useState(false);
+  const [showSearchbar, setShowSearchbar] = useState(false);
 
   const changeTicker = (newTicker) => {
     setTicker(newTicker);
@@ -81,7 +82,7 @@ function App() {
         <Helmet>
           <style>{theme ? darkTheme : lightTheme}</style>
         </Helmet>
-        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme, changeTicker, hideOptionPopup } }>
+        <MainContext.Provider value={ { ticker, price, expiry, expiryDates, contractTicker, error, showError, makeError, optionable, setOptionable, theme, setTheme, changeTicker, hideOptionPopup, showSearchbar, setShowSearchbar } }>
           <Navbar />
           { optionable &&
             <>

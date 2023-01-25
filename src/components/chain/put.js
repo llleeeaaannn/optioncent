@@ -10,6 +10,7 @@ const Put = ({ optionContract, makePopup }) => {
   const putStyle = "py-1 border-b border-solid border-neutral-700 cursor-pointer text-neutral-300 hover:text-neutral-500";
   const emptyPutStyle = "empty-option-container";
   const putTextStyle = "";
+  const putSpreadStyle = `${putTextStyle} hidden`
 
   return (
     <>
@@ -18,7 +19,7 @@ const Put = ({ optionContract, makePopup }) => {
           <span className={putTextStyle}>-</span>
           <span className={putTextStyle}>-</span>
           <span className={putTextStyle}>-</span>
-          <span className={putTextStyle}>-</span>
+          <span className={putSpreadStyle}>-</span>
           <div className="empty-option-popup">
             <span>There is no option data available for this contract</span>
           </div>
@@ -29,7 +30,7 @@ const Put = ({ optionContract, makePopup }) => {
           <span className={putTextStyle}>{getPercent(optionContract.bid, price)}%</span>
           <span className={putTextStyle}>{getPercent(getMid(optionContract.bid, optionContract.ask), price)}%</span>
           <span className={putTextStyle}>{getPercent(optionContract.ask, price)}%</span>
-          <span className={putTextStyle}>{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
+          <span className={putSpreadStyle}>{getPercent(optionContract.ask - optionContract.bid, price)}%</span>
         </div>
       }
     </>

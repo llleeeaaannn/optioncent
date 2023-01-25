@@ -10,12 +10,13 @@ const Call = ({ optionContract, makePopup }) => {
   const callStyle = "py-1 border-b border-solid border-neutral-700 cursor-pointer text-neutral-300 hover:text-neutral-500";
   const emptyCallStyle = "empty-option-container";
   const callTextStyle = "";
+  const callSpreadStyle = `${callTextStyle} hidden`
 
   return (
     <>
       { !optionContract &&
         <div id="call-container" className={emptyCallStyle}>
-          <span className={callTextStyle}>-</span>
+          <span className={callSpreadStyle}>-</span>
           <span className={callTextStyle}>-</span>
           <span className={callTextStyle}>-</span>
           <span className={callTextStyle}>-</span>
@@ -26,7 +27,7 @@ const Call = ({ optionContract, makePopup }) => {
       }
       { optionContract &&
         <div id="call-container" className={callStyle} onClick={() => makePopup(optionContract.symbol)}>
-          <span className={callTextStyle}>
+          <span className={callSpreadStyle}>
             {getPercent(optionContract.ask - optionContract.bid, price)}%
           </span>
           <span className={callTextStyle}>

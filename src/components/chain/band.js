@@ -8,7 +8,7 @@ const Band = () => {
 
   const bandStyling = "py-2 m-1 rounded-md text-neutral-900 bg-neutral-100 z-10";
   const priceStyling = "grid place-items-center font-MontserratBold"
-  const spreadStyle = "hidden"
+  const spreadStyle = "md:hidden"
 
   return (
     <div id="band" className={bandStyling}>

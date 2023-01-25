@@ -315,6 +315,59 @@ body {
 	align-items: center;
 }
 
+/* Media Queries (Keep values in line with Tailwind) */
+@media (max-width: 768px) {
+
+	/* Body Styling */
+	body {
+		overflow-x: auto;
+	}
+
+	/* Overview Styling */
+	.overview-dte,
+	.overview-expiry {
+		visibility: hidden;
+	}
+
+	/* Put & Call Container Styling */
+	#call-container,
+	#put-container {
+	  grid-template-columns: repeat(3, 1fr);
+	}
+
+	/* Band Styling */
+	#band {
+	  grid-template-columns: 10fr 2.75fr 10fr;
+		width: 102%;
+	}
+
+	.band-call,
+	.band-put {
+	  grid-template-columns: repeat(3, 1fr);
+	}
+
+	/* Option Strike Styling */
+	#strike-container {
+	  grid-template-columns: 10fr 3fr 10fr;
+	}
+
+	/* Strikes Border Styling */
+	#strikes-border {
+		width: 10%;
+		height: calc(100% + 0.25rem);
+	}
+
+	/* Popup Styling */
+	#option-popup {
+		position: relative;
+		max-width: 95vw;
+		margin: 1rem;
+		overflow-y: auto;
+	}
+
+}
+
+
 /* Animations */
 /* Styling to shake searchbar when input is not a ticker */
 .shake-searchbar {
@@ -335,29 +388,6 @@ body {
   100% { transform: translate(-2px) }
 }
 
-
-/* @media (max-device-width:480px) {
-
-} */
-
-@media (max-width:480px) {
-
-	/* Body Styling */
-	body {
-		overflow-x: auto;
-	}
-
-}
-
-@media (max-width:820px) {
-
-	/* Overview Styling */
-	.overview-dte,
-	.overview-expiry {
-		visibility: hidden;
-	}
-
-}
 
 
 /* Styling to shake current row of divs when answer is not valid */

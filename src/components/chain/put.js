@@ -9,8 +9,8 @@ const Put = ({ optionContract, makePopup }) => {
 
   const putStyle = "py-1 border-b border-solid border-neutral-700 cursor-pointer text-neutral-300 hover:text-neutral-500";
   const emptyPutStyle = "empty-option-container";
-  const putTextStyle = "";
-  const putSpreadStyle = `${putTextStyle} hidden`
+  const putTextStyle = "md:text-xs";
+  const putSpreadStyle = `${putTextStyle} md:hidden`
 
   return (
     <>
